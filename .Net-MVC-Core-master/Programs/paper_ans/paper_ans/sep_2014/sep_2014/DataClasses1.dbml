@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="library" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\MSSQLSERVER2;Initial Catalog=library;Integrated Security=True;Pooling=False" SettingsObjectName="sep_2014.Properties.Settings" SettingsPropertyName="libraryConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.book" Member="books">
+    <Type Name="book">
+      <Column Name="bookid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="bname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="price" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="author" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="subject" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="book_borrower" Member="borrowers" ThisKey="bookid" OtherKey="bookid" Type="borrower" />
+    </Type>
+  </Table>
+  <Table Name="dbo.borrower" Member="borrowers">
+    <Type Name="borrower">
+      <Column Name="boid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="boname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="phoneno" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="bookid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="book_borrower" Member="book" ThisKey="bookid" OtherKey="bookid" Type="book" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

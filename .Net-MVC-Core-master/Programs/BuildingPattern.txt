@@ -1,0 +1,305 @@
+using System;
+
+namespace _11_09_19_Exercise2
+{
+
+    class Building
+    {
+        private string Name;
+        private string Place;
+        private Int16 NOfFloor;
+        public string name
+        {
+            get
+            {
+                return this.Name;
+            }
+            set
+            {
+                this.Name = value;
+            }
+        }
+
+        public string place
+        {
+            get
+            {
+                return this.Place;
+            }
+            set
+            {
+                this.Place = value;
+            }
+        }
+
+        public Int16 noffloor
+        {
+            get
+            {
+                return this.NOfFloor;
+            }
+            set
+            {
+                this.NOfFloor = value;
+            }
+        }
+
+
+    }
+
+    class Mall:Building
+    {
+        private Int16 NOfVentilator;
+        private Int16 NOfShop;
+        private Int16 NOfRestaurant;
+        private Boolean IsPartyHall;
+
+        public Int16 nofventilator
+        {
+            get
+            {
+                return this.NOfVentilator;
+            }
+            set
+            {
+                this.NOfVentilator = value;
+            }
+        }
+
+        public Int16 nofshop
+        {
+            get
+            {
+                return this.NOfShop;
+            }
+            set
+            {
+                this.NOfShop = value;
+            }
+        }
+
+        public Int16 nofrestaurant
+        {
+            get
+            {
+                return this.NOfRestaurant;
+            }
+            set
+            {
+                this.NOfRestaurant = value;
+            }
+        }
+
+        public Boolean ispartyhall
+        {
+            get
+            {
+                return this.IsPartyHall;
+            }
+            set
+            {
+                this.IsPartyHall = value;
+            }
+        }
+
+        public Mall(string name, string place, Int16 noffloor, Int16 nofventilator, Int16 nofshop, Int16 nofrestaurant , Boolean ispartyhall)
+        {
+            this.name = name;
+            this.place = place;
+            this.noffloor = noffloor;
+            this.NOfVentilator = nofventilator;
+            this.NOfShop = nofshop;
+            this.NOfRestaurant = nofrestaurant;
+            this.IsPartyHall = ispartyhall;
+        }
+
+
+
+    }
+
+    class Apartment : Building
+    {
+        private Int16 NOfWing;
+        private Int16 NOfFlatePerFloar;
+        private string FlatType;
+        private Boolean IsGarden;
+
+        public Int16 nofwing
+        {
+            get
+            {
+                return this.NOfWing;
+            }
+            set
+            {
+                this.NOfWing = value;
+            }
+        }
+
+        public Int16 nofflateperfloar
+        {
+            get
+            {
+                return this.NOfFlatePerFloar;
+            }
+            set
+            {
+                this.NOfFlatePerFloar = value;
+            }
+        }
+
+        public string flattype
+        {
+            get
+            {
+                return this.FlatType;
+            }
+            set
+            {
+                this.FlatType = value;
+            }
+        }
+
+        public Boolean isgarden
+        {
+            get
+            {
+                return this.IsGarden;
+            }
+            set
+            {
+                this.IsGarden = value;
+            }
+        }
+
+        public Apartment(string name, string place, Int16 noffloor, Int16 nofwing, Int16 nofflateperfloor,string flattype ,Boolean isgarden)
+        {
+            this.name = name;
+            this.place = place;
+            this.noffloor = noffloor;
+            this.NOfWing= nofwing;
+            this.NOfFlatePerFloar = nofflateperfloor;
+            this.IsGarden = isgarden;
+        }
+
+
+    }
+
+    class Multiplex:Building
+    {
+        private Int16 NOfScreen;
+        private Int16 NOfCurrentMovie;        
+        private Boolean IsAvaliable3D;
+
+        public Int16 nofscreen
+        {
+            get
+            {
+                return this.NOfScreen;
+            }
+            set
+            {
+                this.NOfScreen = value;
+            }
+        }
+
+        public Int16 nofcurrentmovie
+        {
+            get
+            {
+                return this.NOfCurrentMovie;
+            }
+            set
+            {
+                this.NOfCurrentMovie = value;
+            }
+        }
+
+ 
+        public Boolean isavaliable3d
+        {
+            get
+            {
+                return this.IsAvaliable3D;
+            }
+            set
+            {
+                this.IsAvaliable3D = value;
+            }
+        }
+
+        public Multiplex(string name,string place,Int16 noffloor,Int16 nofscreen, Int16 nofcurrentmovie, Boolean isavaliable3d)
+        {
+            this.name = name;
+            this.place = place;
+            this.noffloor = noffloor;
+            this.NOfScreen = nofscreen;
+            this.NOfCurrentMovie = nofcurrentmovie;
+            this.IsAvaliable3D = isavaliable3d;
+        }
+    }
+
+
+
+    class Program
+    {
+        static void Main1(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+            Multiplex Multiplex1 = new Multiplex("Valentine", "Dumas Road", 1, 5, 4, true);
+            Mall Mall1 = new Mall("Rahulraj", "Pipload", 4,7,50,3,true);
+            switch (Multiplex1)
+            {
+                case Building Building1 when (Building1.name == "Vantine"):
+                    Console.WriteLine($"Building Name: {Building1.name}");
+                    break;
+
+                case Multiplex Multiplex2 when (Multiplex2.name == "Valentine"):
+                    Console.WriteLine($"Multiplex Name: {Multiplex2.name}");
+                    break;
+                default:
+                    Console.WriteLine("Not found");
+                    break;
+
+            }
+
+            if (Multiplex1 is Multiplex)
+                Console.WriteLine("Valentine is Multiplex!");
+            else
+                Console.WriteLine("Valentine is not Multiplex!");
+            if (Multiplex1 is Building)
+                Console.WriteLine("Valentine is also Building!");
+            else
+                Console.WriteLine("Valentine is not Building!");
+            if (Multiplex1 is Apartment)
+                Console.WriteLine(" Valentine is  Appartment");
+            else
+               Console.WriteLine("Sorry it is not Appartment");
+
+            Console.WriteLine(ComputeEstiProfit(Mall1));
+            Console.WriteLine(ComputeEstiProfit(Multiplex1));
+        }
+
+        public static double ComputeEstiProfit(object Building)
+        {
+            if(Building is Mall m)
+            {
+                var rest = m.nofrestaurant * 500;
+                var shop = m.nofshop * 500;
+                return rest + shop;
+            }
+            else if(Building is Multiplex mult)
+            {
+                return mult.nofscreen*5000;
+            }
+            else if (Building is Apartment a)
+            {
+                var house = a.nofflateperfloar * a.noffloor;
+                return house * 4000;
+            }
+            throw new ArgumentException(
+                message: "Building type is not recognized,sorry!",paramName:nameof(Building));
+        }
+
+    }
+}

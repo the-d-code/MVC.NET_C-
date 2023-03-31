@@ -1,0 +1,127 @@
+﻿@model IEnumerable<CoreDemoBeforeExam.Models.StudentTb>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div>
+    <select id="gen">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+
+    </select>
+
+    <br>
+    <label>Age</label>
+    <input type="text" name="age1" id="age1" />
+    <br>
+    <label>Age2</label>
+    <input type="text" name="age2" id="age2"/>
+    <br>
+    <input type="button" value="Search" id="btnsearch"/>
+</div>
+<div id="new">
+
+    </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $("#gen").change(function () {
+           // alert($(this).val());
+            var gender = $(this).val();
+            var add = "";
+            $.ajax({
+
+                url: "StudentTbs/GetByGender?gender=" + gender,
+                type: "GET",
+                success: function(response) {
+                    $(".table").remove();
+
+                    var d = "<table class=table><tr><th>StudentName</th><th>Surname</th><th>Gender</th><th>Age</th><th></th></tr></table>";
+                    $("#new").append(d);
+                    console.log(response.result);
+                    for (var i = 0; i < response.result.length; i++) {
+                        add += "<tr><td>" + response.result[i].studentName + "</td><td>" + response.result[i].surname + "</td><td>" + response.result[i].gender + "</td><td>" + response.result[i].age + "</td></tr>";
+                    }
+                    $(".table").append(add);
+                   
+                }
+            })
+        })
+
+        $("#btnsearch").click(function () {
+
+            var age1 = $("#age1").val();
+            var age2 = $("#age2").val();
+
+          //  alert(age1 + " " + age2);
+            var add = "";
+            $.ajax({
+                url: "StudentTbs/GetByAge?age1="+ age1+"&age2="+age2,
+                type: "GET",
+                success: function(response) {
+                    $(".table").remove();
+
+                    var d = "<table class=table><tr><th>StudentName</th><th>Surname</th><th>Gender</th><th>Age</th><th></th></tr></table>";
+                    $("#new").append(d);
+                    console.log(response.result);
+                    for (var i = 0; i < response.result.length; i++) {
+                        add += "<tr><td>" + response.result[i].studentName + "</td><td>" + response.result[i].surname + "</td><td>" + response.result[i].gender + "</td><td>" + response.result[i].age + "</td></tr>";
+                    }
+                    $(".table").append(add);
+                   
+                }
+
+            })
+        })
+
+    })
+</script>

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MvcApplication2.ServiceReference1.exam>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            per
+        </th>
+        <th>
+            rno
+        </th>
+        <th>
+            name
+        </th>
+        <th>
+            sem
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.examid }) |
+          
+            @Html.ActionLink("Delete", "Delete", new { id = item.examid })
+        </td>
+        <td>
+            @String.Format("{0:F}", item.per)
+        </td>
+        <td>
+            @String.Format("{0:F}", item.rno)
+            @{
+    MvcApplication2.ServiceReference1.CRUDServiceClient sc = new MvcApplication2.ServiceReference1.CRUDServiceClient();
+    MvcApplication2.ServiceReference1.stud s=sc.SearchStud(Int16.Parse (item.rno.ToString ()));
+    var sname = s.sname;
+    
+        
+}
+@sname 
+        </td>
+        <td>
+            
+
+        </td>
+        <td>
+            @String.Format("{0:F}", item.sem)
+        </td>
+    </tr>
+}
+
+</table>
+

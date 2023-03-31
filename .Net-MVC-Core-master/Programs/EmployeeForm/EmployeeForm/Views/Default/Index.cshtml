@@ -1,0 +1,1391 @@
+﻿
+@{
+    Layout = null;
+}
+
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
+
+<script src="~/Scripts/angular.min.js"></script>
+
+<html>
+<body>
+   
+
+
+        <div ng-app="myApp">
+            <div class="content" ng-controller="RegisterCtrl">
+
+                @*<form class="form-horizontal">*@
+
+                <ul class="nav nav-tabs">
+                    <li ng-repeat="step in steps" ng-class="{active: $index==getCurrentStepIndex()}">
+                        <a href="javascript:void(0)" ng-click="goToStep($index)">{{step}}</a>
+                    </li>
+                </ul>
+                <div >
+                            <div ng-switch on="selection">
+
+                                <!-- First Step -->
+                                <div ng-switch-when="Step 1: Persnol">
+                                    <div class="row col-md-12">
+                                        <div class="span4">
+                                            <h3>Personal</h3>
+                             
+                                                <div class="row col-md-12">
+                                                    <div class="col-md-12" id="employee-vertical1">
+                                                        <form   action="" method="POST" data-parsley-validate novalidate enctype="multipart/form-data">
+                                                            <input type="hidden" name="EmpId" class="EmpId">
+                                                            <input type="hidden" name="EntryTerm" class="EntryTerm">
+                                                            <input type="hidden" name="EmpCode" id="EmpCode" value="JH0044">
+                                                            <div>
+                                                                <div class="row">
+                                                                    <div class="col-md-2 p-t-15">
+                                                                        <div id="blah" class="text-center">
+                                                                            <img src="" class="img-responsive thumb-xlg">
+                                                                        </div>
+
+                                                                        <div class="" title="Profile">
+                                                                            <input type="file" name="Profile" id="Profile" class="filestyle form-control" data-input="false" data-buttonText="Profile Image" onchange="readURL(this);">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-10">
+                                                                        <h3 class="p-t-83" style="float:right;">Employee Code : <b class="text-danger EmpCode">JH0044</b></h3>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <h4 class="h4-title"><b>Personal Information</b></h4>
+
+                                                                <div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">First Name<span class="text-danger">*</span></label>
+                                                                            <div class="" title="First Name">
+
+                                                                                <input type="text" name="Fname" ng-model="Persnol.Fname" data-parsley-trigger="change" required="" class="form-control" id="Fname" maxlength="50" value="" data-parsley-errors-container="#Fname_msg" data-parsley-pattern="^[A-Za-z']*$" data-parsley-pattern-message="This value only allow alphabet">
+                                                                            </div>
+                                                                            <p id="Fname_msg"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Middle Name</label>
+                                                                            <div class="" title="Middle Name">
+
+                                                                                <input type="text" name="Mname" data-parsley-trigger="change" class="form-control" id="Mname" maxlength="50" value="" data-parsley-errors-container="#Mname_msg" data-parsley-pattern="^[A-Za-z ']*$" data-parsley-pattern-message="This value only allow alphabet">
+
+                                                                            </div>
+                                                                            <p id="Mname_msg"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Last Name<span class="text-danger">*</span></label>
+                                                                            <div class="" title="Last Name">
+                                                                                <input type="text" name="Lname" data-parsley-trigger="change" required class="form-control" id="Lname" maxlength="50" value="" data-parsley-errors-container="#Lname_msg" data-parsley-pattern="^[A-Za-z']*$" data-parsley-pattern-message="This value only allow alphabet">
+                                                                            </div>
+                                                                            <p id="Lname_msg"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Gender<span class="text-danger">*</span></label>
+
+                                                                            <span class="custom-control custom-radio">
+                                                                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                                                                                <label class="custom-control-label" for="customRadio1">Male</label>
+                                                                            </span>
+                                                                            <span class="custom-control custom-radio">
+                                                                                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                                                                                <label class="custom-control-label" for="customRadio2">Female</label>
+                                                                            </span>
+
+                                                                            <p id="Gender_msg"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Date Of Birth</label>
+                                                                            <div class="" title="Date Of Birth">
+
+                                                                                <input type="date" id="DOB" name="DOB" data-parsley-trigger="change" class="form-control DOB" maxlength="50" value="" data-parsley-errors-container="#DOB_msg" required="">
+                                                                                @*<label class="col-2 col-form-label">Date</label>*@
+                                                                                @*<div class="col-10">
+                                                                                        <input class="form-control" type="date" name="date">
+                                                                                    </div>*@
+                                                                            </div>
+                                                                            <p id="DOB_msg"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Father/Husband Full Name</label>
+                                                                            <div class="" title="Father Full Name">
+                                                                                <input type="text" id="FatherName" name="FatherName" data-parsley-trigger="change" class="form-control" value="" data-parsley-errors-container="#FatherName_msg">
+                                                                            </div>
+                                                                            <p id="FatherName_msg"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Country<span class="text-danger">*</span></label>
+                                                                            <div class="" title="Country">
+
+                                                                                <select class="selectpicker" data-live-search="true" data-style="btn-white" name="CountryId" id="CountryId" required="" data-parsley-trigger="change" data-parsley-errors-container="#CountryId_msg" @*ng-model="Country.countryId" ng-options="c.countryId as c.countryName for c in Country"*@>
+                                                                                    <option value="">Select</option>
+
+                                                                                </select>
+                                                                            </div>
+                                                                            <p id="CountryId_msg"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Phone<span class="text-danger">*</span></label>
+                                                                            <div class="" title="Phone">
+
+                                                                                <input type="hidden" name="CountryCode" id="CountryCode">
+                                                                                <input type="text" id="Phone" name="Phone" data-parsley-trigger="change" class="form-control" required="" maxlength="15" value="" data-parsley-errors-container="#Phone_msg" data-parsley-maxlength="5" data-parsley-type="digits">
+                                                                            </div>
+                                                                            <p id="Phone_msg"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Email<span class="text-danger">*</span></label>
+                                                                            <div class="" title="Email">
+
+                                                                                <input type="email" name="Email" data-parsley-trigger="change" required="" class="form-control" id="emailAddress" maxlength="50" value="" data-parsley-errors-container="#Email_msg">
+                                                                            </div>
+                                                                            <p id="Email_msg"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Birth Place</label>
+                                                                            <div class="" title="Birth Place">
+
+                                                                                <input type="text" id="Birthplace" name="Birthplace" data-parsley-trigger="change" class="form-control" maxlength="50" value="" data-parsley-errors-container="#Birthplace_msg">
+                                                                            </div>
+                                                                            <p id="Birthplace_msg"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Nationality</label>
+                                                                            <div class="" title="Nationality">
+                                                                                <input type="text" id="Nationality" name="Nationality" data-parsley-trigger="change" class="form-control" maxlength="50" value="" data-parsley-errors-container="#Nationality_msg">
+                                                                            </div>
+                                                                            <p id="Nationality_msg"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Religion</label>
+                                                                            <div class="" title="Religion">
+
+                                                                                <input type="text" id="Religion" name="Religion" data-parsley-trigger="change" class="form-control" maxlength="50" value="" data-parsley-errors-container="#Religion_msg" required="">
+                                                                            </div>
+                                                                            <p id="Religion_msg"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Blood Group</label>
+                                                                            <div class="" title="Blood Group">
+
+                                                                                <select class="form-control" data-parsley-errors-container="#BloodGroup_msg" name="BloodGroup" data-parsley-trigger="change">
+                                                                                    <option value="O+">O+</option>
+                                                                                    <option value="O-">O-</option>
+                                                                                    <option value="A+">A+</option>
+                                                                                    <option value="A-">A-</option>
+                                                                                    <option value="B+">B+</option>
+                                                                                    <option value="B-">B-</option>
+                                                                                    <option value="AB+">AB+</option>
+                                                                                    <option value="AB-">AB-</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <p id="BloodGroup_msg"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Marital</label>
+                                                                            <div class="" title="Marital">
+                                                                                <select class="form-control" data-parsley-errors-container="#Marital_msg" name="Marital" data-parsley-trigger="change">
+                                                                                    <option value="Unmarried">Unmarried</option>
+                                                                                    <option value="Married">Married</option>
+                                                                                    <option value="Divorce">Divorce</option>
+                                                                                    <option value="Widowed">Widowed</option>
+                                                                                    <option value="Single">Single</option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <p id="Marital_msg"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Office Email</label>
+                                                                            <div class="" title="Office Email">
+                                                                                <input type="email" name="OfficeEmail" data-parsley-trigger="change" class="form-control" id="OfficeEmail" maxlength="50" value="" data-parsley-errors-container="#OfficeEmail_msg">
+                                                                            </div>
+                                                                            <p id="OfficeEmail_msg"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Office Extension</label>
+                                                                            <div class="" title="Office extension Phone">
+                                                                                <input type="text" id="OfficeEXTPhone" name="OfficeExtension" data-parsley-trigger="change" class="form-control" value="" data-parsley-errors-container="#OfficeExtension_msg" data-parsley-maxlength="5" data-parsley-type="digits">
+                                                                            </div>
+                                                                            <p id="OfficeExtension_msg"></p>
+                                                                            <div class="clearfix"></div>
+                                                                            <label class="label-title">Office Phone</label>
+                                                                            <div class="" title="Office Phone">
+
+                                                                                <input type="hidden" name="OfficeCountryCode" id="OfficeCountryCode" class="OfficeCountryCode">
+                                                                                <input type="text" id="OfficePhone" name="OfficePhone" data-parsley-trigger="change" placeholder="Enter OfficePhone" class="form-control" maxlength="15" value="" data-parsley-errors-container="#OfficePhone_msg" data-parsley-type="digits">
+                                                                            </div>
+                                                                            <p id="OfficePhone_msg"></p>
+                                                                        </div>
+                                                                        <div class="col-md-8">
+                                                                            <div class="form-group">
+                                                                                <label class="label-title">BIO</label>
+                                                                                <div class="" title="BIO" id="CityList">
+
+                                                                                    <textarea name="BIO" id="BIO" class="form-control"></textarea>
+                                                                                </div>
+                                                                                <p id="BIO_msg"></p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div style="text-align:right;">
+                                                                        <div class="" title="Identity Information">
+                                                                            <a class="btn addbtn  btn-sm btn-xs filebtn" style="color:white!important" title="Add Employee Document" ng-click="AddIdProof()"><i class="fa fa-plus"></i></a>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div ng-repeat="i in IdentityType">
+                                                                        <div class="empIdproof">
+                                                                            <div class="row IdProof ">
+
+                                                                                <div class="col-md-4">
+                                                                                    <label class="label-title">Identity Type</label>
+                                                                                    <div class="" title="Identity Type">
+
+                                                                                        <select class="form-control" data-parsley-trigger="change" id="CodeId0" required="" data-parsley-errors-container="#CodeId_msg{{$index}}" ng-model="i.ddlProofType">
+                                                                                            <option value="">Select</option>
+                                                                                            <option value="{{x.ProofTypeId}}" ng-repeat="x in ProofType">
+                                                                                                {{x.ProofTypeName}}
+                                                                                            </option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <p id="CodeId_msg{{$index}}"></p>
+                                                                                </div>
+                                                                                <div class="col-md-4">
+                                                                                    <label class="label-title">Card Number</label>
+                                                                                    <div class="" title="CardNum">
+
+                                                                                        <input type="text" required="" data-parsley-trigger="change" class="form-control" id="CardNum0" maxlength="50" value="" ng-model="i.CardNumber" data-parsley-errors-container="#CardNum_msg">
+                                                                                    </div>
+                                                                                    <p id="CardNum_msg{{$index}}"></p>
+                                                                                </div>
+
+                                                                                <div class="col-md-2">
+                                                                                    @*<label class="label-title">Document</label>
+                                                                                        <input type="hidden" name="ImageKey[]" value="0" id="ImageKey0">
+                                                                                        <div class="" title="Identity document" style="margin-top:-10px;">
+                                                                                            <input type="file" class="filestyle" data-input="false" multiple="" name="Image0[]" id="Image0" onchange="documentURL(this,'DisplayImage');" data-parsley-errors-container="#Image0_msg">
+                                                                                            <input type="hidden" name="RemoveImage0" id="RemoveImage0" />
+                                                                                        </div>*@
+                                                                                    <div class="form-group">
+                                                                                        <label class="control-label">Document</label>
+                                                                                        <input type="file" class="filestyle" ng-model="i.ProofFile" data-input="false"
+                                                                                               multiple="" name="Image0[]" data-parsley-errors-container="#Image0_msg{{$index}}">
+                                                                                    </div>
+
+                                                                                    <p id="Image0_msg{{$index}}"></p>
+                                                                                </div>
+
+                                                                                <div class="col-md-2" ng-if="$index>0">
+                                                                                    <div class="" title="Identity Information">
+                                                                                        <a class="btn addbtn  btn-sm btn-xs btn-danger" style="color:white!important" title="Add Employee Document" ng-click="RemoveIdentityRow($index)"><i class="fa fa-times"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div id="DisplayImage"></div>
+                                                                @* <input type="button" ng-click="xyz()" value="get" />*@
+
+                                                                <h4 class="h4-title"><b>Address Information</b></h4>
+
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="label-title">Postal Address<span class="text-danger">*</span></label>
+                                                                            <div class="" title="Postal Address">
+
+                                                                                <input required="" type="text" name="PostalAddress" data-parsley-trigger="change" placeholder="" class="form-control Location" id="PostalAddress" value="" data-parsley-errors-container="#PostalAddress_msg" onblur="copy_address();" autocomplete="off">
+
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <p id="PostalAddress_msg"></p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="label-title">Country<span class="text-danger">*</span></label>
+                                                                            <div class="" title="Postal Country">
+
+                                                                                <select class="selectpicker " data-live-search="true" data-style="btn-white" name="CountryId1" id="CountryId1" required="" ng-model="Country.countryId" data-parsley-trigger="change" data-parsley-errors-container="#PCountryId_msg" ng-options="c.countryId as c.countryName for c in Country" ng-change="GetStateData(Country.countryId)">
+
+                                                                                    <option value="">Select</option>
+                                                                                </select>
+
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <p id="PCountryId_msg"></p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="label-title">State<span class="text-danger">*</span></label>
+                                                                            <div class="" title="State" id="PStateList">
+
+                                                                                @*<select class="form-control" name="PStateId" required="" data-parsley-trigger="change" id="PStateId" data-parsley-errors-container="#PStateId_msg" onchange="city_list(this.value,'PCityList');" onblur="copy_address();">
+                                                                                        <option>Gujarat</option>
+                                                                                    </select>*@
+                                                                                <select class="selectpicker " data-live-search="true" data-style="btn-white" name="PStateId" required="" data-parsley-trigger="change" id="PStateId" data-parsley-errors-container="#PStateId_msg" ng-model="TempState.stateId" ng-options="s.stateId as s.stateName for s in TempState" ng-change="GetCityData(TempState.stateId)">
+                                                                                    <option value="">Select</option>
+
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <p id="PStateId_msg"></p>
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="label-title">City<span class="text-danger">*</span></label>
+                                                                            <div class="" title="City" id="PCityList">
+
+                                                                                @*<select class="form-control" name="PCityId" required="" data-parsley-trigger="change" id="PCityId" data-parsley-errors-container="#PCityId_msg" onblur="copy_address();">
+                                                                                        <option>Surat</option>
+                                                                                    </select>*@
+                                                                                <select class="selectpicker" data-live-search="true" data-style="btn-white" name="PCityId" required="" data-parsley-trigger="change" id="PCityId" data-parsley-errors-container="#PCityId_msg" ng-model="TempCity.cityId" ng-options="cc.cityId as cc.cityName for cc in TempCity">
+                                                                                    <option value="">Select</option>
+
+                                                                                </select>
+
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <p id="PCityId_msg"></p>
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="label-title">Postal Code<span class="text-danger">*</span></label>
+                                                                            <div class="" title="Postal Code">
+
+                                                                                <input type="text" name="PPostalCode" data-parsley-trigger="change" class="form-control Location" id="PPostalCode" required="" value="" data-parsley data-parsley-errors-container="#PPostalCode_msg" onblur="copy_address();">
+
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <p id="PPostalCode_msg"></p>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <div class="form-group">
+                                                                            <label class="label-title">Current Address<span class="text-danger">*</span></label>
+                                                                            <div class="" title="Current Address">
+
+                                                                                <input type="text" placeholder="" name="CurrentAddress" data-parsley-trigger="change" required="" class="form-control Location" id="CurrentAddress" value="" data-parsley-errors-container="#CurrentAddress_msg" onblur="copy_address();" autocomplete="off">
+
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <p id="CurrentAddress_msg"></p>
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="label-title">Country<span class="text-danger">*</span></label>
+                                                                            <div class="" title="Current Country">
+
+                                                                                <select class="selectpicker" data-live-search="true" data-style="btn-white" name="CountryId2" id="CountryId2" required="" data-parsley-trigger="change" data-parsley-errors-container="#CCountryId_msg" ng-model="Country.countryId" ng-options="c.countryId as c.countryName for c in Country" ng-change="GetStateData(Country.countryId,1)">
+                                                                                    <option value="">Select</option>
+
+                                                                                </select>
+
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <p id="CCountryId_msg"></p>
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="label-title">State<span class="text-danger">*</span></label>
+                                                                            <div class="" title="State" id="CStateList">
+
+                                                                                @*<select class="form-control" name="CStateId" data-parsley-trigger="change" id="CStateId" required="" data-parsley-errors-container="#CStateId_msg" >
+                                                                                        <option>Gujarat</option>
+                                                                                    </select>*@
+                                                                                <select class="selectpicker" data-live-search="true" data-style="btn-white" name="CStateId" data-parsley-trigger="change" id="CStateId" required="" data-parsley-errors-container="#CStateId_msg" ng-model="TempStateCurrent.stateId" ng-options="s.stateId as s.stateName for s in TempStateCurrent" ng-change="GetCityData(TempState.stateId,1)">
+                                                                                    <option value="">Select</option>
+                                                                                </select>
+
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <p id="CStateId_msg"></p>
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="label-title">City<span class="text-danger">*</span></label>
+                                                                            <div class="" title="City" id="CCityList">
+
+                                                                                @*<select class="form-control" name="CCityId" data-parsley-trigger="change" id="CCityId" data-parsley-errors-container="#CCityId_msg" required="" onblur="copy_address();">
+                                                                                        <option>Surat</option>
+                                                                                    </select>*@
+                                                                                <select class="selectpicker " data-live-search="true" data-style="btn-white" name="CCityId" data-parsley-trigger="change" id="CCityId" data-parsley-errors-container="#CCityId_msg" required="" ng-model="TempCityCurrent.cityId" ng-options="cc.cityId as cc.cityName for cc in TempCityCurrent">
+                                                                                    <option value="">Select</option>
+
+                                                                                </select>
+
+
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <p id="CCityId_msg"></p>
+
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label class="label-title">Postal Code<span class="text-danger">*</span></label>
+                                                                            <div class="" title="Postal Code">
+
+                                                                                <input type="text" name="CPostalCode" data-parsley-trigger="change" required="" class="form-control Location" id="CPostalCode" value="" data-parsley-errors-container="#CPostalCode_msg" onblur="copy_address();">
+
+                                                                            </div>
+                                                                            <div class="row">
+                                                                                <p id="CPostalCode_msg"></p>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-offset-6 col-md-6">
+                                                                        <div class="" title="As Above">
+                                                                            <div class="checkbox" style="margin-top: -12px;">
+                                                                                <input id="AsAbove" type="checkbox" onchange="copy_address(this);" value="1">
+                                                                                <label for="AsAbove" class="text-danger">Copy From Left</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="" style="text-align:right;">
+                                                                    <div class="" title="Identity Information">
+                                                                        <a class="btn addbtn  btn-sm btn-xs filebtn" style="color:white!important" ng-click="AddIdProof2()" title="Add Employee Document"><i class="fa fa-plus"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                                <div ng-repeat="i in IdentityType2">
+
+                                                                    <div class="empAIdproof">
+                                                                        <div class="row IdProof ">
+
+                                                                            <div class="col-md-4">
+                                                                                <label class="label-title">Identity Type</label>
+                                                                                <div class="" title="Identity Type">
+
+                                                                                    <select class="form-control" @*data-parsley-trigger="change" required="" data-parsley-errors-container="#CodeId{{$index}}"*@ data-parsley-trigger="change" required="" data-parsley-errors-container="#CodeIds{{$index}}" ng-model="i.ddlProofType2">
+                                                                                        <option value="">Select</option>
+                                                                                        <option value="{{x.ProofTypeId}}" ng-repeat="x in ProofType">{{x.ProofTypeName}}</option>
+
+                                                                                    </select>
+                                                                                </div>
+                                                                                <p id="CodeIds{{$index}}"></p>
+                                                                            </div>
+                                                                            <div class="col-md-4">
+                                                                                <label class="label-title">Card Number</label>
+                                                                                <div class="" title="CardNum">
+
+                                                                                    <input type="text" data-parsley-trigger="change" required="" class="form-control" id="CardNum1" maxlength="50" value="" data-parsley-errors-container="#CardNum_msg{{$index}}" ng-model="i.CardNumber2">
+                                                                                </div>
+                                                                                <p id="CardNum_msg{{$index}}"></p>
+                                                                            </div>
+                                                                            <div class="col-md-2">
+                                                                                <label class="label-title">Document</label>
+                                                                                <input type="hidden" name="ImageKey[]" id="ImageKey1" value="1">
+                                                                                <div class="" title="Identity document">
+                                                                                    <input type="file" class="filestyle" data-input="false" multiple="" name="Image1[]" id="Image1" data-parsley-errors-container="#Image1_msg{{$index}}" ng-model="i.ProofFile2">
+                                                                                    <input type="hidden" name="RemoveImage1" id="RemoveImage1" />
+                                                                                </div>
+                                                                                <p id="Image1_msg{{$index}}"></p>
+                                                                            </div>
+
+                                                                            <div class="col-md-2" ng-if="$index>0">
+                                                                                <div class="" title="Identity Information">
+                                                                                    <a class="btn addbtn  btn-sm btn-xs btn-danger" style="color:white!important" title="Add Employee Document" ng-click="RemoveIdentityRow2($index)"><i class="fa fa-times"></i></a>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row form-group" id="DisplayAImage"></div>
+                                                                <h4 class="h4-title"><b>Nominee Information</b></h4>
+                                                                <div class="">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-4">
+                                                                            <label class="label-title">Nominee Name</label>
+                                                                            <div class="" title="Nominee Name">
+                                                                                <input type="text" required="" name="NName" data-parsley-trigger="change" class="form-control" id="NName" value="" data-parsley-errors-container="#NName_msg" data-parsley-pattern="^[A-Za-z ]*$" data-parsley-pattern-message="This value only allow alphabet">
+                                                                            </div>
+                                                                            <p id="NName_msg"></p>
+                                                                        </div>
+                                                                        <div class="col-lg-4">
+                                                                            <label class="label-title">Relation</label>
+                                                                            <div class="" title="Relation">
+                                                                                <input type="text" name="Relation" required="" data-parsley-trigger="change" class="form-control" id="Relation" value="" data-parsley-errors-container="#Relation_msg" data-parsley-pattern="^[A-Za-z ]*$" data-parsley-pattern-message="This value only allow alphabet">
+                                                                            </div>
+                                                                            <p id="Relation_msg"></p>
+                                                                        </div>
+                                                                        <div class="col-lg-4">
+                                                                            <label class="label-title">Nominee Phone</label>
+                                                                            <div class="" title="Nominee Phone">
+
+                                                                                <input type="hidden" name="NCountryCode" id="NCountryCode">
+                                                                                <input type="text" name="NPhone" data-parsley-trigger="change" class="form-control" id="NPhone" ="" value="" data-parsley-errors-container="#NPhone_msg" data-parsley-type="number">
+                                                                            </div>
+                                                                            <p id="NPhone_msg"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <label class="label-title">Nominee Location</label>
+                                                                            <div class="" title="Nominee Location">
+
+                                                                                <input type="text" name="NLocation" data-parsley-trigger="change" class="form-control Location" id="NLocation" value="" data-parsley-errors-container="#NLocation_msg">
+                                                                            </div>
+                                                                            <p id="NLocation_msg"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row form-group"></div>
+                                                                <h4 class="h4-title"><b>Reference Information</b></h4>
+                                                                <div class="">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Reference Name</label>
+                                                                            <div class="" title="Reference Name">
+                                                                                <input type="text" name="RName" data-parsley-trigger="change" class="form-control" id="RName" value="" data-parsley-errors-container="#RName_msg" data-parsley-pattern="^[A-Za-z ]*$" data-parsley-pattern-message="This value only allow alphabet">
+                                                                            </div>
+                                                                            <p id="RName_msg"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Designation</label>
+                                                                            <div class="" title="Designation">
+                                                                                <input type="text" name="Designation" data-parsley-trigger="change" class="form-control" id="Designation" value="" data-parsley-errors-container="#Designation_msg" data-parsley-pattern="^[A-Za-z ]*$" data-parsley-pattern-message="This value only allow alphabet">
+                                                                            </div>
+                                                                            <p id="Designation_msg"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Company</label>
+                                                                            <div class="" title="Company">
+                                                                                <input type="text" name="Company" data-parsley-trigger="change" class="form-control" id="Company" value="" data-parsley-errors-container="#Company_msg" data-parsley-pattern="^[A-Za-z ]*$" data-parsley-pattern-message="This value only allow alphabet">
+                                                                            </div>
+                                                                            <p id="Company_msg"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Reference Phone</label>
+                                                                            <div class="" title="Reference Phone">
+                                                                                <input type="text" name="RPhone" data-parsley-trigger="change" class="form-control" id="RPhone" value="" data-parsley-errors-container="#RPhone_msg" data-parsley-type="number">
+                                                                            </div>
+                                                                            <p id="RPhone_msg"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Reference Email</label>
+                                                                            <div class="" title="Reference Email">
+                                                                                <input type="email" name="REmail" data-parsley-trigger="change" class="form-control" id="REmail" value="" data-parsley-errors-container="#REmail_msg" data-parsley-type="email">
+                                                                            </div>
+                                                                            <p id="RPhone_msg"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="pull-right"><input type="submit" value="submit" style="margin:20px 0;" class="btn btn-success"></div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                               
+                                        </div>
+                                        @*<div class="span4 offset1">
+
+                                            <div class="control-group">
+                                                <label class="control-label" for="teamName">Team Image</label>
+                                                <div class="controls">
+                                                </div>
+                                            </div>
+
+                                            <div class="control-group">
+                                                <label class="control-label" for="teamMembers">Team Members</label>
+                                                <div class="controls">
+
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                    </div>
+                                </div>
+
+                                <!-- Second Step -->
+                                <div ng-switch-when="Step 2: Employement">
+
+                                    <h3>Employment</h3>
+                                        <div id="employee-vertical2">
+                                        <form action="" method="POST" data-parsley-validate novalidate enctype="multipart/form-data">
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="edu">
+                                                        <h4 class="h4-title"><b>Employment Information</b></h4>
+                                                        <div class="">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Branch<span class="text-danger">*</span></label>
+                                                                    <div class="" title="Branch">
+                                                                        <select name="BranchId" data-parsley-trigger="change" class="form-control" required="" id="BranchId" onchange="dept_list(this.value);" data-parsley-errors-container="#BranchId_msg">
+                                                                            <option value=""></option>
+                                                                            <option value="1">Jyoti Hydrotech Pvt Ltd</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <p id="BranchId_msg"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Department<span class="text-danger">*</span></label>
+                                                                    <div class="" title="Department" id="DeptList">
+                                                                        <select name="DeptId" required="" data-parsley-trigger="change" class="form-control" id="DeptId" data-parsley-errors-container="#DeptId_msg" ng-model="Department.DepartmentId" ng-options="dc.DepartmentId as dc.DepartmentName for dc in Department">
+                                                                            <option>Select</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <p id="DeptId_msg"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Designation<span class="text-danger">*</span></label>
+                                                                    <div class="" title="Designation" id="DesigList">
+                                                                        <select name="DesId" required="" data-parsley-trigger="change" class="form-control" id="DesId" data-parsley-errors-container="#DesId_msg" ng-model="Designation.DesignationId" ng-options="des.DesignationId as des.DesignationTitle for des in Designation">
+                                                                            <option value="">Select</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <p id="DesId_msg"></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Date Of Joining</label>
+                                                                    <div class="" title="Date Of Joining ">
+                                                                        <input type="date" id="DOJ" name="DOJ" data-parsley-trigger="change" class="form-control" required="" maxlength="50" data-parsley-errors-container="#DOJ_msg">
+                                                                    </div>
+                                                                    <p id="DOJ_msg"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Probation Start</label>
+                                                                    <div class="" title="Probation Start Date ">
+                                                                        <input type="date" id="ProbationStart" name="ProbationStart" required="" data-parsley-trigger="change" class="form-control" data-parsley-errors-container="#ProbationStart_msg">
+                                                                    </div>
+                                                                    <p id="ProbationStart_msg"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Probation No Of Month</label>
+                                                                    <div class="" title="Probation No of month">
+                                                                        <input type="text" id="ProMonth" name="ProMonth" required="" data-parsley-trigger="change" class="form-control" maxlength="50" value="" data-parsley-errors-container="#ProMonth_msg" data-parsley-type="number">
+                                                                    </div>
+                                                                    <p id="ProMonth_msg"></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Salary</label>
+                                                                    <div class="" title="Salary">
+                                                                        <input type="text" id="Salery" required="" name="Salary" data-parsley-trigger="change" data-parsley-pattern="/^\d*(?:\.\d{0,2})?$/" data-parsley-pattern-message="This value allow only float number" class="form-control" maxlength="50" value="" data-parsley-errors-container="#Salary_msg">
+                                                                    </div>
+                                                                    <p id="Salary_msg"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Pay Frequency</label>
+                                                                    <div class="" title="Pay Frequency">
+                                                                        <select name="PayFrequency" id="PayFrequency" required="" class="form-control" data-parsley-trigger="change" data-parsley-errors-container="#PayFrequency_msg">
+                                                                            <option value=""></option>
+                                                                            <option value="Yearly">Yearly</option>
+                                                                            <option value="Monthly">Monthly</option>
+                                                                            <option value="Days Wise">Days Wise</option>
+                                                                            <option value="Hourly">Hourly</option>
+                                                                            <option value="Quaterly">Quaterly</option>
+                                                                            <option value="Fixed">Fixed</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <p id="PayFrequency_msg"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Employee Status</label>
+                                                                    <div class="" title="Employee Status">
+                                                                        <select name="EmpStatus" class="form-control" data-parsley-trigger="change" data-parsley-errors-container="#EmpStatus_msg" ng-model="EmployeeStatus.StatusId" ng-options="es.StatusId as es.StatusName for es in EmployeeStatus">
+                                                                            <option value=""></option>
+                                                                            <option value="Permanent">Permanent</option>
+                                                                            <option value="Probation">Probation</option>
+                                                                            <option value="Trainee">Trainee</option>
+                                                                            <option value="Contract">Contract</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <p id="EmpStatus_msg"></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">PF Number</label>
+                                                                    <div class="" title="PF Number ">
+                                                                        <input type="text" id="PFNum" name="PFNum" data-parsley-trigger="change" data-parsley-type="alphanum" class="form-control" maxlength="50" value="" data-parsley-errors-container="#PFNum_msg">
+                                                                    </div>
+                                                                    <p id="PFNum_msg"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">ESIC Number</label>
+                                                                    <div class="" title="ESIC Number">
+                                                                        <input type="text" id="ESICNum" name="ESICNum" data-parsley-trigger="change" data-parsley-type="alphanum" class="form-control" maxlength="50" value="" data-parsley-errors-container="#ESICNum_msg">
+                                                                    </div>
+                                                                    <p id="ESICNum_msg"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Employee Type</label>
+                                                                    <div class="" title="Employee Type">
+                                                                        <select name="EmpType" class="form-control" data-parsley-trigger="change" data-parsley-errors-container="#EmpType_msg" ng-model="EmployeeType.EmployeeTypeId" ng-options="et.EmployeeTypeId as et.EmployeeTypeName for et in EmployeeType">
+                                                                            <option value="">Select</option>
+
+                                                                        </select>
+                                                                    </div>
+                                                                    <p id="EmpType_msg"></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Working Type</label>
+                                                                    <div class="" title="Working Type">
+                                                                        <select name="WorkingType" class="form-control" data-parsley-trigger="change" data-parsley-errors-container="#WorkingType_msg" ng-model="EmployeeWorkingType.EmployeeWorkingTypeId" ng-options="ew.EmployeeWorkingTypeId as ew.WorkingType for ew in EmployeeWorkingType">
+                                                                            <option value="">Select</option>
+
+                                                                        </select>
+                                                                    </div>
+                                                                    <p id="WorkingType_msg"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Leaving Date</label>
+                                                                    <div class="" title="Leaving Date">
+                                                                        <input type="date" id="Leavingdate" name="Leavingdate" data-parsley-trigger="change" class="form-control" maxlength="50" value="" data-parsley-errors-container="#Leavingdate_msg" readonly="" disabled>
+                                                                    </div>
+                                                                    <p id="Leavingdate_msg"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Pay Type</label>
+                                                                    <div class="" title="Pay Type">
+                                                                        <select name="PayType" class="form-control" data-parsley-trigger="change" data-parsley-errors-container="#PayType_msg" onchange="set_bankValidtion(this.value)">
+                                                                            <option value=""></option>
+                                                                            <option value="Cash">Cash</option>
+                                                                            <option value="Cheque">Cheque</option>
+                                                                            <option value="Transfer">Transfer</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <p id="PayType_msg"></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <label class="label-title">Area</label>
+                                                                    <div title="Area" id="AreaList">
+                                                                    </div>
+                                                                    <p id="AreaId_msg"> </p>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <h4 style="padding-left: 10px;"><b>Bank Information</b></h4>
+                                                        <div class="">
+                                                            <div class="row" id="BankDetails">
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Bank Name</label>
+                                                                    <div class="" title="Bank Name">
+                                                                        <input type="text" id="BankName" name="BankName" data-parsley-trigger="change" class="form-control" maxlength="50" value="" data-parsley-errors-container="#BankName_msg" data-parsley-pattern="^[A-Za-z ]*$" data-parsley-pattern-message="This value only allow alphabet">
+                                                                    </div>
+                                                                    <p id="BankName_msg"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Account Number</label>
+                                                                    <div class="" title="Account Number">
+                                                                        <input type="text" id="AccountNo" name="AccountNo" data-parsley-trigger="change" class="form-control" maxlength="50" value="" data-parsley-type="number" data-parsley-errors-container="#AccountNo_msg">
+                                                                    </div>
+                                                                    <p id="AccountNo_msg"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">IFSC Code</label>
+                                                                    <div class="" title="IFSC Code">
+                                                                        <input type="text" id="IFCCode" name="IFCCode" data-parsley-trigger="change" data-parsley-type="alphanum" class="form-control" maxlength="50" value="" data-parsley-errors-container="#IFCCode_msg">
+                                                                    </div>
+                                                                    <p id="IFCCode_msg"></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Branch Name</label>
+                                                                    <div class="" title="Branch Name">
+                                                                        <input type="text" id="BranchName" name="BranchName" data-parsley-trigger="change" class="form-control" maxlength="50" value="" data-parsley-errors-container="#BranchName_msg" data-parsley-pattern="^[A-Za-z ]*$" data-parsley-pattern-message="This value only allow alphabet">
+                                                                    </div>
+                                                                    <p id="BranchName_msg"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Account Name</label>
+                                                                    <div class="" title="Account Name">
+                                                                        <input type="text" id="HolderName" name="HolderName" data-parsley-trigger="change" class="form-control" maxlength="50" value="" data-parsley-errors-container="#HolderName_msg" data-parsley-pattern="^[A-Za-z ']*$" data-parsley-pattern-message="This value only allow alphabet">
+                                                                    </div>
+                                                                    <p id="HolderName_msg"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Account Type</label>
+                                                                    <div class="" title="Account Type">
+                                                                        <select name="AccountType" class="form-control" data-parsley-trigger="change" data-parsley-errors-container="#AccountType_msg">
+                                                                            <option value=""></option>
+                                                                            <option value="Saving">Saving</option>
+                                                                            <option value="Current">Current</option>
+                                                                            <option value="Fixed Deposit">Fixed Deposit</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <p id="AccountType_msg"></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        @* <input type="file" ng-model="emptype.DocFile" class="filestyle" required="" data-input="false" multiple="" name="emptype.DocFile" id="EmploymentImage0" data-parsley-errors-container="#EmploymentImage0_msg{{$index}}">*@
+
+                                                        <h4 style="padding-left: 10px;"><b>Employment Document</b></h4>
+                                                        <div class="EmploymentDoc">
+                                                            <div class="" style="text-align:right;color:white!important">
+                                                                <div class="" title="Employment Information">
+                                                                    <a class="btn addbtn  btn-sm btn-xs filebtn" ng-click="AddEmployementType()" title="Add Employee Document"><i class="fa fa-plus"></i></a>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div ng-repeat="e in EmployeeType1">
+                                                                <div class="row">
+                                                                    <div class="col-md-4">
+                                                                        <label class="label-title">Employment Type</label>
+                                                                        <div class="" title="Employment Type">
+                                                                            <select class="form-control" ng-model="e.EmployeementType" data-parsley-trigger="change" id="EmploymentCodeId0{{$index}}" data-parsley-errors-container="#EmploymentCodeId0_msg{{$index}}">
+                                                                                <option value=""></option>
+                                                                                <option value="6">MBA</option>
+                                                                            </select>
+                                                                        </div>
+
+                                                                        <p id="EmploymentCodeId0_msg"></p>
+                                                                    </div>
+                                                                    <div class="col-md-2">
+                                                                        <label class="label-title">Employment Document</label>
+                                                                        <div class="" title="Employment Document">
+                                                                            <input type="file" class="filestyle" required="" ng-model="e.DocFile" data-input="false" multiple="" name="Image[0]" id="Image[0]" data-parsley-errors-container="#EmploymentImage0_msg{{$index}}">
+                                                                        </div>
+                                                                        <p id="EmploymentImage0_msg{{$index}}"></p>
+                                                                    </div>
+                                                                    <div class="col-md-2" ng-if="$index>0">
+                                                                        <div class="" title="EmployeeDocument Information">
+                                                                            <a class="btn addbtn  btn-sm btn-xs btn-danger" style="color:white!important" title="Add Employee Document" ng-click="RemoveEmployeeDocRow($index)"><i class="fa fa-times"></i></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        </div>
+                                </div>
+
+                                <!-- Third Step -->
+                                <div ng-switch-when="Step 3: Family">
+                                    <h3>Family</h3>
+                                        <div id="employee-vertical3">
+                                        <form   action="" method="POST" data-parsley-validate novalidate enctype="multipart/form-data">
+                                            <input type="hidden" name="EmpId" class="EmpId">
+                                            <input type="hidden" name="FamilyId[]" class="FamilyId0" id="FamilyId0">
+                                            <input type="hidden" name="EntryTerm" class="EntryTerm">
+                                            <div @*ng-repeat="family in FamilyDetail"*@>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <span class="col-md-2" style="float:right;" ng-if="$index>0" title="Family Information">
+
+                                                            <a class="btn addbtn  btn-sm btn-xs btn-danger" style="color:white!important;float:right;" title="Add Employee Document" ng-click="RemoveFamilyRow($index)"><i class="fa fa-times"></i></a>
+
+                                                        </span>
+                                                        <hr>
+                                                        <div class="edu">
+
+                                                            <div class="">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <h4 style=""><b>Guardian Details</b></h4>
+
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-4">
+                                                                        <label class="label-title">Name</label>
+                                                                        <div class="" title="Name">
+                                                                            <input type="text" required="" name="FName[]" data-parsley-trigger="change" class="form-control" id="FName0" value="" data-parsley-errors-container="#FName0_msg{{$index}}" data-parsley-pattern="^[A-Za-z ]*$" data-parsley-pattern-message="This value only allow alphabet" ng-model="family.Name">
+                                                                        </div>
+                                                                        <p id="FName0_msg{{$index}}"></p>
+                                                                    </div>
+                                                                    <div class="col-lg-4">
+                                                                        <label class="label-title">Relation</label>
+                                                                        <div class="" title="Relation">
+                                                                            <select name="FRelation[]" required="" data-parsley-trigger="change" id="FRelation0" class="form-control" data-parsley-errors-container="#FRelation0_msg{{$index}}" ng-model="family.Relation">
+                                                                                <option value=""></option>
+                                                                                <option value="Father">Father</option>
+                                                                                <option value="Mother">Mother</option>
+                                                                                <option value="Daughter">Daughter</option>
+                                                                                <option value="Son">Son</option>
+                                                                                <option value="Husband">Husband</option>
+                                                                                <option value="Wife">Wife</option>
+                                                                                <option value="Brother">Brother</option>
+                                                                                <option value="Sister">Sister</option>
+                                                                                <option value="Grandfather">Grandfather</option>
+                                                                                <option value="Grandmother">Grandmother</option>
+                                                                                <option value="Grandson">Grandson</option>
+                                                                                <option value="Granddaughter">Granddaughter</option>
+                                                                                <option value="Uncle">Uncle</option>
+                                                                                <option value="Aunt">Aunt</option>
+                                                                                <option value="Nephew">Nephew</option>
+                                                                                <option value="Niece">Niece</option>
+                                                                                <option value="Cousin">Cousin</option>
+                                                                                <option value="Inlaws">Inlaws</option>
+                                                                            </select>
+                                                                        </div>
+                                                                        <p id="FRelation0_msg{{$index}}"></p>
+                                                                    </div>
+                                                                    <div class="col-lg-4">
+                                                                        <label class="label-title">Phone</label>
+                                                                        <div class="" title="Phone">
+                                                                            <input type="text" name="FPhone[]" required="" data-parsley-trigger="change" class="form-control" id="FPhone0" value="" data-parsley-errors-container="#FPhone0_msg{{$index}}" data-parsley-type="number" ng-model="family.Phone">
+                                                                        </div>
+                                                                        <p id="FPhone0_msg{{$index}}"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-4">
+                                                                        <label class="label-title">Education</label>
+                                                                        <div class="" title="Education">
+                                                                            <input type="text" name="FStudy[]" data-parsley-trigger="change" class="form-control" id="FStudy0" value="" data-parsley-errors-container="#FStudy0_msg{{$index}}" data-parsley-pattern="^[A-Za-z ]*$" data-parsley-pattern-message="This value only allow alphabet" ng-model="family.Education">
+                                                                        </div>
+                                                                        <p id="FStudy0_msg{{$index}}"></p>
+                                                                    </div>
+                                                                    <div class="col-lg-4">
+                                                                        <label class="label-title">Work</label>
+                                                                        <div class="" title="Work">
+                                                                            <input type="text" name="FWork[]" data-parsley-trigger="change" class="form-control" id="FWork0" value="" data-parsley-errors-container="#FWork0_msg{{$index}}" data-parsley-pattern="^[A-Za-z ]*$" data-parsley-pattern-message="This value only allow alphabet" ng-model="family.Education">
+                                                                        </div>
+                                                                        <p id="FWork0_msg{{$index}}"></p>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label class="label-title">Date Of Birth</label>
+                                                                        <div class="" title="Date Of Birth">
+                                                                            <input type="date" id="FDOB0" name="FDOB" data-parsley-trigger="change" class="form-control DOB" maxlength="50" value="" data-parsley-errors-container="#FDOB0_msg{{$index}}" ng-model="family.dob">
+                                                                        </div>
+                                                                        <p id="FDOB0_msg{{$index}}"></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-lg-4">
+                                                                        <label class="label-title">Email</label>
+                                                                        <div class="" title="Email">
+                                                                            <input type="text" name="Email[]" data-parsley-trigger="change" class="form-control" id="FEmail0" value="" data-parsley-errors-container="#FName0_msg{{$index}}" data-parsley-type="email" ng-model="family.mail">
+                                                                        </div>
+                                                                        <p id="FEmail0_msg{{$index}}"></p>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="" id="empFamilyDetails">
+
+                                            </div>
+                                            <div class="row p-t-10">
+                                                <div class="" style="color:white;">
+                                                    <div class="col-lg-12">
+                                                        <a class="btn btn-md filebtn" ng-click="AddFamilyRow()" title="Add New Family Details"><i class="fa fa-plus"></i> Add New</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        </div>
+                                </div>
+
+                                <div ng-switch-when="Step 4: Education">
+                                    <h3>Education</h3>
+                                    <div id="employee-vertical4">
+                                    <form   action="" method="POST" data-parsley-validate novalidate enctype="multipart/form-data">
+                                        <input type="hidden" name="EmpId" class="EmpId">
+                                        <input type="hidden" name="EduId[]" id="EduId0">
+                                        <input type="hidden" name="EntryTerm" class="EntryTerm">
+                                        <div @*ng-repeat="edu in EducationDetail"*@>
+                                            <div class="row" id="empEducation">
+
+                                                <div class="col-md-12">
+                                                    <span class="col-md-2" style="float:right;" ng-if="$index>0" title="Education Information">
+
+                                                        <a class="btn addbtn  btn-sm btn-xs btn-danger" style="color:white!important;float:right;" title="Add Employee Document" ng-click="RemoveEducationRow($index)"><i class="fa fa-times"></i></a>
+
+                                                    </span>
+                                                    <hr>
+                                                    <h3>Education Detail</h3>
+                                                    <div class="edu p-t-38">
+                                                        <div class="">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Type</label>
+                                                                    <div class="" title="Education">
+                                                                        <select name="ECodeId[]" required="" id="ECodeId0" data-parsley-trigger="change" class="form-control education" data-parsley-errors-container="#ECodeId0_msg{{$index}}" ng-model="edu.etype.EmpEducationTypeId">
+
+                                                                            <option ng-repeat="etype in EmployeeEducationType" value="">{{etype.EmpEducationType}}</option>
+
+                                                                        </select>
+                                                                    </div>
+                                                                    <p id="ECodeId0_msg{{$index}}"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Degree Name</label>
+                                                                    <div class="" title="Degree Name" id="DegreeList0">
+                                                                        <select name="DegreeId[]" required="" id="DegreeId" data-parsley-trigger="change" class="form-control" data-parsley-errors-container="#DegreeId_msg{{$index}}" ng-model="edu.Degree">
+                                                                            <option value="">Select</option>
+                                                                            <option ng-repeat="d in Degree">{{d.Degree}}</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <p id="DegreeId0_msg{{$index}}"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Specialization</label>
+                                                                    <div class="" title="Specialization">
+                                                                        <input type="text" data-parsley-trigger="change" class="form-control" id="Specialization0" data-parsley-errors-container="#Specialization0_msg{{$index}}" ng-model="edu.Specialization">
+                                                                    </div>
+                                                                    <p id="Specialization0_msg{{$index}}"></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">University</label>
+                                                                    <div class="" title="University">
+                                                                        <input type="text" name="University[]" required="" data-parsley-trigger="change" class="form-control" list="University0" value="" data-parsley-errors-container="#University0_msg{{$index}}" data-parsley-pattern="^[A-Za-z ]*$" data-parsley-pattern-message="This value only allow alphabet" autocomplete="off" ng-model="edu.University">
+                                                                        <datalist id="University0">
+                                                                            <option value="VNSGU">
+
+                                                                        </datalist>
+
+                                                                        @*<select class="selectpicker" data-live-search="true" data-style="btn-white" name="CountryId" id="CountryId" required="" data-parsley-trigger="change" data-parsley-errors-container="#CountryId_msg" ng-model="Country.countryId" ng-options="c.countryId as c.countryName for c in Country">
+                                                            <option value="">Select</option>
+
+                                                        </select>*@
+                                                                    </div>
+                                                                    <p id="University0_msg{{$index}}"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">College Name</label>
+                                                                    <div class="" title="College Name">
+                                                                        <input type="text" name="ClgName[]" required="" data-parsley-trigger="change" class="form-control" list="ClgName0" value="" data-parsley-errors-container="#ClgName0_msg{{$index}}" data-parsley-pattern="^[A-Za-z ()]*$" data-parsley-pattern-message="This value only allow alphabet" onblur="set_ClgAddress(this.value,0);" autocomplete="off" ng-model="edu.CollegeName">
+                                                                        <datalist id="ClgName0">
+                                                                            <option value="()">
+                                                                            <option value="Agarwal College(Agarwal College Road, Lunsikui, Navsari, Gujarat, India)">
+                                                                        </datalist>
+                                                                    </div>
+                                                                    <p id="ClgName0_msg" {{$index}}></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">College Address</label>
+                                                                    <div class="" title="College Address">
+                                                                        <input type="text" name="ClgAddress[]" data-parsley-trigger="change" class="form-control remove-disabled-color ClgAddress" id="ClgAddress0" value="" data-parsley-errors-container="#ClgAddress0_msg{{$index}}" ng-model="edu.CollegeAddress">
+                                                                    </div>
+                                                                    <p id="ClgAddress0_msg{{$index}}"></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Medium</label>
+                                                                    <div class="" title="Medium">
+                                                                        <input type="text" name="Medium[]" required="" data-parsley-trigger="change" class="form-control" id="Medium0" value="" data-parsley-errors-container="#Medium0_msg{{$index}}" data-parsley-pattern="^[A-Za-z ]*$" data-parsley-pattern-message="This value only allow alphabet" ng-model="edu.Medium">
+                                                                    </div>
+                                                                    <p id="Medium0_msg{{$index}}"></p>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Passout Year</label>
+                                                                    <div class="" title="Passout Year">
+                                                                        <input type="text" name="PassoutYear[]" data-parsley-trigger="change" data-parsley-type="number" class="form-control" id="PassoutYear0" value="" data-parsley-errors-container="#PassoutYear0_msg{{$index}}" ng-model="edu.PassoutYear">
+                                                                    </div>
+                                                                    <p id="PassoutYear0_msg{{$index}}"></p>
+                                                                </div>
+
+                                                                <div class="col-md-4">
+                                                                    <label class="label-title">Grade</label>
+                                                                    <div class="" title="Grade(in %)">
+                                                                        <input type="text" name="Grade[]" data-parsley-trigger="change" class="form-control" id="Grade0" value="" data-parsley-errors-container="#Grade0_msg{{$index}}" data-parsley-pattern="/^\d*(?:\.\d{0,2})?$/" data-parsley-pattern-message="This value allows only float number" max=100 ng-model="edu.Grade">
+                                                                    </div>
+                                                                    <p id="Grade0_msg{{$index}}"></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <label class="label-title">Remark</label>
+                                                                    <div class="" title="Remark">
+                                                                        <textarea class="form-control" id="Remark0" name="Remark[]" data-parsley-errors-container="#Remark0_msg{{$index}}" ng-model="edu.Remark"></textarea>
+                                                                    </div>
+                                                                    <p id="Remark0_msg{{$index}}"></p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <label class="label-title">Document</label>
+                                                                    <div class="" title="Education Document">
+                                                                        <input type="file" multiple="" name="EImage0[]" id="EImage0" class="filestyle" data-input='false' @*onchange="EducationDocURL(this);"*@ ng-model="edu.Document">
+                                                                        <input type="hidden" name="RemoveEImage0" id="RemoveEImage0" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6" id="DisplayEImage0">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="" style="color:white;">
+                                                <div class="col-lg-12 p-t-10">
+                                                    <a title="Add New Row" class="btn btn-md filebtn" ng-click="EducationRowAdd()"><i class="fa fa-plus"></i> Add New</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                                <div ng-switch-when="Step 5: Experiance">
+                                    <h3>Experience</h3>
+                                    <div id="employee-vertical5">
+                                    <form   action="" method="POST" data-parsley-validate novalidate enctype="multipart/form-data">
+                                        <input type="hidden" name="EmpId" class="EmpId">
+                                        <input type="hidden" name="EntryTerm" class="EntryTerm">
+                                        <div @*ng-repeat="ex in ExperianceDetail"*@>
+                                            <div class="row" id="empExperience">
+
+                                                <div class="col-md-12">
+
+                                                    <hr>
+                                                    <div class="row">
+                                                        <div class="col-md-12" style="text-align:right;" ng-if="$index>0" title="Experiance  Information">
+
+                                                            <a class="btn addbtn  btn-sm btn-xs btn-danger" style="color:white!important;float:right;" title="Add Employee Document" ng-click="RemoveExperianceRow($index)"><i class="fa fa-times"></i></a>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="edu p-t-38">
+                                                        <div class="">
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Company Name</label>
+                                                                            <div class="" title="Compnay Name">
+                                                                                <input type="text" required="" name="CompName[]" data-parsley-trigger="change" class="form-control" id="CompName0" value="" data-parsley-errors-container="#CompName0_msg{{$index}}" data-parsley-pattern="^[A-Za-z ]*$" data-parsley-pattern-message="This value only allow alphabet" ng-model="ex.CompanyName">
+                                                                            </div>
+                                                                            <p id="CompName0_msg{{$index}}"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Company Phone</label>
+                                                                            <div class="" title="Company Phone">
+                                                                                <input type="text" name="CmpPhone[]" required="" data-parsley-trigger="change" class="form-control" id="CmpPhone0" value="" data-parsley-errors-container="#CmpPhone0_msg{{$index}}" data-parsley-type="number" ng-model="ex.CompanyPhone">
+                                                                            </div>
+                                                                            <p id="CmpPhone0_msg{{$index}}"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Company Address</label>
+                                                                            <div class="" title="Compnay Address">
+                                                                                <input type="text" name="CmpAddress[]" data-parsley-trigger="change" class="form-control CmpAddress" id="CmpAddress0" value="" data-parsley-errors-container="#CmpAddress0_msg{{$index}}" ng-model="ex.CompanyAddress">
+                                                                            </div>
+                                                                            <p id="CmpAddress0_msg{{$index}}"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Start Salary</label>
+                                                                            <div class="" title="Start Salary">
+                                                                                <input type="text" id="SaleryStart0" name="SalaryStart[]" data-parsley-trigger="change" data-parsley-pattern="/^\d*(?:\.\d{0,2})?$/" data-parsley-pattern-message="This value allow only float number" class="form-control" maxlength="50" value="" data-parsley-errors-container="#SalaryStart0_msg" {{$index}} ng-model="ex.StartSalary">
+                                                                            </div>
+                                                                            <p id="SalaryStart0_msg{{$index}}"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">End Salary</label>
+                                                                            <div class="" title="End Salary">
+                                                                                <input type="text" id="SaleryEnd0" required="" name="SalaryEnd[]" data-parsley-trigger="change" data-parsley-pattern="/^\d*(?:\.\d{0,2})?$/" data-parsley-pattern-message="This value allow only float number" class="form-control" maxlength="50" value="" data-parsley-errors-container="#SalaryEnd0_msg{{$index}}" ng-model="ex.EndSalary">
+                                                                            </div>
+                                                                            <p id="SalaryEnd0_msg{{$index}}"></p>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">Position</label>
+                                                                            <div class="" title="Position">
+                                                                                <input type="text" name="Position[]" required="" data-parsley-trigger="change" class="form-control" id="Position0" value="" data-parsley-errors-container="#Position0_msg{{$index}}" ng-model="ex.Position">
+                                                                            </div>
+                                                                            <p id="Position0_msg{{$index}}"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">From Date</label>
+                                                                            <div class="" title="From Date">
+                                                                                <input type="date" name="FromDate[]" data-parsley-trigger="change" class="form-control" id="FromDate0" value="" data-parsley-errors-container="#FromDate0_msg{{$index}}" ng-model="ex.FromDate">
+                                                                            </div>
+                                                                            <p id="FromDate0_msg{{$index}}"></p>
+                                                                        </div>
+
+                                                                        <div class="col-md-4">
+                                                                            <label class="label-title">To Date</label>
+                                                                            <div class="" title="To Date">
+                                                                                <input type="date" name="ToDate[]" data-parsley-trigger="change" class="form-control remove-disabled-color" id="ToDate0" value="" data-parsley-errors-container="#ToDate0_msg{{$index}}" ng-model="ex.ToDate">
+                                                                            </div>
+                                                                            <p id="ToDate0_msg{{$index}}"></p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <h4 style="padding-left: 10px;"><b>Experience Document</b></h4>
+                                                            <div class="row" id="empExperienceDoc0">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row p-t-10">
+                                            <div class="" style="color:white;">
+                                                <div class="col-lg-12">
+                                                    <a class="btn btn-md filebtn" ng-click="ExperienceAddRows();"><i class="fa fa-plus"></i> Add New</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    </div>                                
+                                    </div>
+
+                                <div ng-switch-when="Step 6: Login">
+                                    <h3>Login</h3>
+                                    <div id="employee-vertical6">
+                                        <form   action="" method="POST" data-parsley-validate novalidate enctype="multipart/form-data">
+
+
+
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <label class="label-title">Username</label>
+                                                    <div class="" title="Username">
+                                                        <input type="text" required="" name="Username" data-parsley-trigger="change" class="form-control" id="userName" value="" data-parsley-type="alphanum" data-parsley-maxlength="20" data-parsley-errors-container="#Username_msg">
+                                                    </div>
+                                                    <p id="Username_msg"></p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="label-title">Role</label>
+                                                    <div class="" title="Role">
+                                                        <select name="RoleId" id="RoleId" data-parsley-trigger="change" required="" class="form-control" data-parsley-errors-container="#RoleId_msg" ng-model="Role.RoleId" ng-options="r.RoleId as r.RoleName for r in Role">
+                                                            <option value="">Select</option>
+                                                        </select>
+                                                    </div>
+                                                    <p id="RoleId_msg"></p>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <label class="label-title">Reporting To</label>
+                                                    <div class="" title="Reporting To">
+                                                        <select @*name="ReportTo" id="ReportTo"*@ data-parsley-trigger="change" required="" class="form-control" data-parsley-errors-container="#ReportTo_msg">
+                                                            <option value="26">Aditya  Purohit</option>
+                                                            <option value="3">Anand Soni</option>
+                                                            <option value="34">Archan Patel</option>
+                                                            <option value="21">Balkrishna Padhy</option>
+                                                            <option value="20">Bhavesh Panchal</option>
+                                                            <option value="29">Chandrashekhar Sharma</option>
+                                                            <option value="41">Durvash nimje</option>
+                                                            <option value="42">Gautam Ankoliya</option>
+                                                            <option value="43">Gunjan Patel</option>
+                                                            <option value="28">Hussain Ghalib</option>
+                                                            <option value="33">Jaimin Maisuriya</option>
+                                                            <option value="23">Kaushik Jagad</option>
+                                                            <option value="2">Komal Kalgude</option>
+                                                            <option value="24">Kuldeep  Pandey</option>
+                                                            <option value="25">Mahendra Goswami</option>
+                                                            <option value="31">Milan Rupaliya</option>
+                                                            <option value="19">Prakash Prajapati</option>
+                                                            <option value="46">Pravesh Patel</option>
+                                                            <option value="27">Puneet Sharma</option>
+                                                            <option value="35">Pushpendra Singh</option>
+                                                            <option value="32">Ravi Singhala</option>
+                                                            <option value="45">Ravindra  Patil</option>
+                                                            <option value="22">Ronak Shah</option>
+                                                            <option value="40">Ruchi Patel</option>
+                                                            <option value="18">Santosh Prajapati</option>
+                                                            <option value="7">Surbhi Soni</option>
+                                                            <option value="52">Tester Parekh</option>
+                                                            <option value="30">Uttam Singh</option>
+                                                        </select>
+                                                    </div>
+                                                    <p id="ReportTo_msg"></p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label class="label-title">Password</label>
+                                                    <div class="" title="Password">
+                                                        <input id="password" type="password" required="" data-parsley-trigger="change" name="Password" class="form-control" data-parsley-errors-container="#Password_msg" data-parsley-pattern="/^(?=.*[0-9])(?=.*[!@@#$%^&*])(?=.*[A-Z])[a-zA-Z0-9!@@#$%^&*]{6,16}$/" data-parsley-pattern-message="Password field in allowing least one number, one special character (!@@#$%^&*), one capital alphabet and alphabet">
+
+                                                    </div>
+                                                    <p id="Password_msg"></p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="label-title">Confirm Password</label>
+                                                    <div class="" title="Confirm Password">
+
+                                                        <input data-parsley-equalto="#password" required="" type="password" name="confirm_password" data-parsley-trigger="change" class="form-control" id="confirm_password" data-parsley-errors-container="#confirm_password_msg" data-parsley-pattern="/^(?=.*[0-9])(?=.*[!@@#$%^&*])(?=.*[A-Z])[a-zA-Z0-9!@@#$%^&*]{6,16}$/" data-parsley-pattern-message="Password field in allowing least one number, one special character (!@@#$%^&*) , one capital alphabet and alphabet">
+
+                                                    </div>
+                                                    <p id="confirm_password_msg"></p>
+                                                </div>
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                </div>
+                
+                <ul class="pager pull-left">
+                    <li class="" ng-class="{disabled: !hasPreviousStep()}">
+                        <a href="javascript:void(0);" ng-click="decrementStep()">&larr; Previous Step</a>
+                    </li>
+                    <li class="" ng-class="{disabled: !hasNextStep()}">
+                        <a href="javascript:void(0);" ng-click="incrementStep()">Next Step &rarr;</a>
+                    </li>
+                </ul>
+                <div class="pull-right"><button style="margin:20px 0;" class="btn btn-success">Confirm and Register</button></div>
+                <div class="clearfix"></div>
+                @*</form>*@
+
+            </div>
+        </div>
+   
+</body>
+</html>
+
+<script src="~/Scripts/MYJS.js"></script>
+<script src="~/Scripts/parsley.min.js"></script>

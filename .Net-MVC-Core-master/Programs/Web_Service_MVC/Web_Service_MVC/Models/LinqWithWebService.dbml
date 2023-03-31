@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="EMPDB" Class="LinqWithWebServiceDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\EMPDB.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="EMPDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.DeptTB" Member="DeptTBs">
+    <Type Name="DeptTB">
+      <Column Name="DeptId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DeptName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="DeptTB_EmpTB" Member="EmpTBs" ThisKey="DeptId" OtherKey="DeptId" Type="EmpTB" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EmpTB" Member="EmpTBs">
+    <Type Name="EmpTB">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmpName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Salary" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DeptId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="DeptTB_EmpTB" Member="DeptTB" ThisKey="DeptId" OtherKey="DeptId" Type="DeptTB" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserTB" Member="UserTBs">
+    <Type Name="UserTB">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

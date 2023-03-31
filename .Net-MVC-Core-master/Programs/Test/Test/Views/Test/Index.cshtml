@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Styles -->
+    <link href="~/Scripts/jquery.steps.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    
+
+
+
+
+
+
+    <!-- Scripts -->
+    <!-- Dependencies -->
+    <!-- AngularJS -->
+
+
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+
+    <script src="~/Scripts/jquery.steps.js"></script>
+    <!-- AngularJS -->
+    <script src="~/Scripts/MyJS/app.js"></script>
+    <script src="~/Scripts/MyJS/stepWizardService.js"></script>
+    <script src="~/Scripts/MyJS/stepWizardCtrl.js"></script>
+    <script src="~/Scripts/MyJS/wizardDirective.js"></script>
+</head>
+
+  <body ng-app="wizardModule">
+
+     <div class="container" ng-cloak>
+        <wizard ctrl="stepWizardCtrl">
+
+                    <!-- Step 1  -->
+                    <h1>Step 1</h1>
+
+                    <div >
+                      <div class="container">
+                        <div class="form-horizontal">
+                          <div class="form-group">
+
+                            <label for="name" class="col-sm-2 control-label">Name</label>
+
+                            <div class="col-sm-10">
+                              <input type="text"
+                                     class="form-control margin-bottom-10"
+                                     id="name"
+                                     placeholder="Name"
+                                     name="name"
+                                     ng-model="wizard.name"
+                                     required
+                                     data-required-msg="Name required!">
+                            </div>
+
+                            <div class="col-sm-12">
+                              <span class="k-invalid-msg" data-for="name"></span>
+
+                              <span>
+                                {{ wizard.name }}
+                              </span>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <h1>Step 2</h1>
+
+                    <div>
+                      <div class="container">
+                        <div class="form-horizontal">
+                          <div class="form-group" >
+                            <div class="col-sm-12">
+                              <div class="radio">
+                                <label>
+                                  <input type="radio" ng-model="radio.current" value="0">
+                                  {{ 'First' }}
+                                </label>
+                              </div>
+                            </div>
+
+
+                            <label for="countrie\'s-list" class="col-sm-2 control-label">Countries</label>
+
+                            <div class="col-sm-10">
+                             
+                            </div>
+
+                            <div class="col-sm-12">
+                              <span class="k-invalid-msg" data-for="country\'s-list"></span>
+                            </div>
+
+                          </div>
+
+                          <div class="form-group" kendo-validator="secondStepSecondValidator">
+                            <div class="col-sm-12">
+                              <div class="radio">
+                                <label>
+                                  <input type="radio" ng-model="radio.current" value="1">
+                                  {{ 'Second' }}
+                                </label>
+                              </div>
+
+
+                            <label for="mssg" class="col-sm-2 control-label">Message</label>
+
+                            <div class="col-sm-10">
+                              <input type="text"
+                                     class="form-control margin-bottom-10"
+                                     id="mssg"
+                                     placeholder="Text"
+                                     name="mssg"
+                                     ng-model="wizard.message"
+                                     ng-disabled="wizard.allowMessage"
+                                     required
+                                     data-required-msg="Message required!">
+                            </div>
+
+                            <div class="col-sm-12">
+                              <span class="k-invalid-msg" data-for="mssg"></span>
+
+                              <span>
+                                {{ wizard.mssg }}
+                              </span>
+                            </div>
+
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+        </wizard>
+      </div>
+
+  </body>
+
+</html>

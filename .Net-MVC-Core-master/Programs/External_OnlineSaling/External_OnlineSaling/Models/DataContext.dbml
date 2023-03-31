@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Shopping" Class="DataContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Shopping.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ShoppingConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.CategoryTB" Member="CategoryTBs">
+    <Type Name="CategoryTB">
+      <Column Name="CategoryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Category" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="CategoryTB_ProductTB" Member="ProductTBs" ThisKey="CategoryId" OtherKey="CategoryId" Type="ProductTB" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderTB" Member="OrderTBs">
+    <Type Name="OrderTB">
+      <Column Name="OrderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="OrderTB_OrderDetailTB" Member="OrderDetailTBs" ThisKey="OrderId" OtherKey="OrderId" Type="OrderDetailTB" />
+      <Association Name="UserTB_OrderTB" Member="UserTB" ThisKey="UserId" OtherKey="UserId" Type="UserTB" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProductTB" Member="ProductTBs">
+    <Type Name="ProductTB">
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MfgDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="ProductTB_OrderDetailTB" Member="OrderDetailTBs" ThisKey="ProductId" OtherKey="ProductId" Type="OrderDetailTB" />
+      <Association Name="CategoryTB_ProductTB" Member="CategoryTB" ThisKey="CategoryId" OtherKey="CategoryId" Type="CategoryTB" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserTB" Member="UserTBs">
+    <Type Name="UserTB">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UserType" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MobileNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Dob" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="UserTB_OrderTB" Member="OrderTBs" ThisKey="UserId" OtherKey="UserId" Type="OrderTB" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderDetailTB" Member="OrderDetailTBs">
+    <Type Name="OrderDetailTB">
+      <Column Name="OrderDetailId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OrderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CountryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StateId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CityId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="OrderTB_OrderDetailTB" Member="OrderTB" ThisKey="OrderId" OtherKey="OrderId" Type="OrderTB" IsForeignKey="true" />
+      <Association Name="ProductTB_OrderDetailTB" Member="ProductTB" ThisKey="ProductId" OtherKey="ProductId" Type="ProductTB" IsForeignKey="true" />
+      <Association Name="CountryTB_OrderDetailTB" Member="CountryTB" ThisKey="CountryId" OtherKey="CountryId" Type="CountryTB" IsForeignKey="true" />
+      <Association Name="CityTB_OrderDetailTB" Member="CityTB" ThisKey="CityId" OtherKey="CityId" Type="CityTB" IsForeignKey="true" />
+      <Association Name="StateTB_OrderDetailTB" Member="StateTB" ThisKey="StateId" OtherKey="StateId" Type="StateTB" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CountryTB" Member="CountryTBs">
+    <Type Name="CountryTB">
+      <Column Name="CountryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CountryName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="CountryTB_OrderDetailTB" Member="OrderDetailTBs" ThisKey="CountryId" OtherKey="CountryId" Type="OrderDetailTB" />
+      <Association Name="CountryTB_StateTB" Member="StateTBs" ThisKey="CountryId" OtherKey="CountryId" Type="StateTB" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CityTB" Member="CityTBs">
+    <Type Name="CityTB">
+      <Column Name="CityId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CityName" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="StateId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="CityTB_OrderDetailTB" Member="OrderDetailTBs" ThisKey="CityId" OtherKey="CityId" Type="OrderDetailTB" />
+      <Association Name="StateTB_CityTB" Member="StateTB" ThisKey="StateId" OtherKey="StateId" Type="StateTB" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.StateTB" Member="StateTBs">
+    <Type Name="StateTB">
+      <Column Name="StateId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="StateName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CountryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="StateTB_OrderDetailTB" Member="OrderDetailTBs" ThisKey="StateId" OtherKey="StateId" Type="OrderDetailTB" />
+      <Association Name="StateTB_CityTB" Member="CityTBs" ThisKey="StateId" OtherKey="StateId" Type="CityTB" />
+      <Association Name="CountryTB_StateTB" Member="CountryTB" ThisKey="CountryId" OtherKey="CountryId" Type="CountryTB" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

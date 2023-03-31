@@ -1,0 +1,88 @@
+﻿@model IEnumerable<LastPracitse.Models.EmployeeTb>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<div>
+    <input type="text" name="name" id="name" class="form-control" />
+</div>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<div class="newdata">
+
+    </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.Department)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#name").on("keyup", function (e) {
+            var name = $(this).val();
+            var add = "";
+            $.ajax({
+                url: "/Employee/GetEmp?name=" + name,
+                type: "GET",
+                success: function (response) {
+                    console.table(response.result);
+                    $(".table").remove();
+                    var d = "<table class='table'><tr><th>Name</th><th>Salary</th><th>Gender</th><th>Department</th></tr></table>";
+                    $(".newdata").append(d);
+
+                    for (var i = 0; i < response.result.length; i++) {
+                        add += "<tr><td>" + response.result[i].name + "</td><td>" + response.result[i].salary + "</td><td>" + response.result[i].gender + "</td><td>" + response.result[i].department + "</td></tr>";
+                    }
+                    $(".table").append(add);
+
+                }
+            })
+
+
+            //alert($(this).val());
+        })
+    })
+</script>

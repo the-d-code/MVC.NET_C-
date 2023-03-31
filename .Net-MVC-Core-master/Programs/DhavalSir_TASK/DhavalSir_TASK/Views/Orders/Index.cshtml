@@ -1,0 +1,71 @@
+﻿@model IEnumerable<DhavalSir_TASK.Models.OrderDetailTB>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model=>model.ProductsTB.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderTB.CustomerTB.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderTB.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderTB.TotalAmount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductsTB.ProductName)
+        </td>
+        <th>
+            @Html.DisplayFor(modelItem => item.OrderTB.CustomerTB.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayFor(modelItem => item.OrderTB.Date)
+        </th>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Qty)
+        </td>
+        <th>
+            @Html.DisplayFor(modelItem => item.OrderTB.TotalAmount)
+        </th>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OrderDetailId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OrderDetailId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OrderDetailId })
+        </td>
+    </tr>
+
+}
+    @Html.ActionLink("Search", "Search", "Orders")
+
+</table>

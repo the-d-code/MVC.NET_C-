@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ExternalTuition.Models.ProductTB>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("My Cart", "DisplayCart")
+</p>
+<table class="table">
+    <tr>
+        
+       
+    </tr>
+
+ 
+    <tr>
+        @foreach (var item in Model)
+        {
+            using (Html.BeginForm("AddCart", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <td>
+                    <input type="hidden" name="pid" value="@item.ProductId" />
+                    <input type="hidden" name="Price" value="@item.Price" />
+                    <h4>@item.ProductName</h4><br /><br />
+                    <img src="~/UploadedFiles/@item.Image" width="200" height="150" /><br /><br />
+                    <input type="number" name="txtqty" class="form-control" required/><br /><br />
+                    @Html.DisplayFor(modelItem => item.Price)
+                    <br><br>
+                    <input type="submit" value="Add To Cart" class="form-control btn-success"/>
+                </td>
+               
+            }
+
+
+        }
+    </tr>
+
+
+</table>

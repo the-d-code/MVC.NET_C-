@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="EmpDep">
+  <DataContextMoniker Name="/EmpDepDataContext" />
+  <nestedChildShapes>
+    <classShape Id="a1f57660-f332-4b68-b9d1-6fd368652bb6" absoluteBounds="2.125, 1.875, 2, 1.9631982421875">
+      <DataClassMoniker Name="/EmpDepDataContext/EmployeeTB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="eef27ec4-99e6-4f22-af11-457170a8182f" absoluteBounds="2.14, 2.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a6cd7dbd-f57f-406c-86cd-01be5732567b" absoluteBounds="2.375, 1.375, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/EmpDepDataContext/DepartmentTB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ca47319b-76b5-4603-84f9-69f2f9456701" absoluteBounds="2.39, 1.835, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.375 : 1.97199625651042); (1.875 : 1.97199625651042); (1.875 : 2.85659912109375); (2.125 : 2.85659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/EmpDepDataContext/DepartmentTB/DepartmentTB_EmployeeTB" />
+      <nodes>
+        <classShapeMoniker Id="a6cd7dbd-f57f-406c-86cd-01be5732567b" />
+        <classShapeMoniker Id="a1f57660-f332-4b68-b9d1-6fd368652bb6" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<DhavalSir_TASK.Models.OrderTB>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+<div>
+    <form method="post">
+        Date 1 :<input type="date" name="date1"><br /><br>
+        Date 2 :<input type="date" name="date2"><br /><br>
+        <input type="submit"name="Search" />
+        </form>
+    </div>
+<p>
+    
+</p>
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                <label>Customer Name</label>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAmount)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerTB.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalAmount)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
+                    @Html.ActionLink("Details", "DetailsOfOrder", new { id = item.OrderId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+

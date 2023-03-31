@@ -1,0 +1,101 @@
+﻿@model IEnumerable<FinalPracise.Models.ProductTB>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p
+
+<div>
+    <label>ProductName</label>
+    <input type="text" name="name"  id="name" class="form-control"/>
+ </div>
+
+<div class="newdata">
+    </div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MfgDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAvailable)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryTB.Categiry)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MfgDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAvailable)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ProductId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
+        </td>
+    </tr>
+}
+
+</table>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $("#name").keyup(function () {
+            var d = "";
+            alert($(this).val());
+            var name = $(this).val();
+            $.ajax({
+
+
+                url: "/Product/getProduct?pname=" + name,
+                type: "get",
+                async: false,
+                success: function (response) {
+                    console.table(response.result)
+                    $(".table").remove();
+
+                    var n = "<table class='table'><tr><th>Product Name</th><th>Category</th><th>MfgDate</th><th>Price</th><th>IsAvailable</th></tr><tr> </tr ></table >";
+                    $(".newdata").append(n);
+
+                    for (var i = 0; i < response.result.length; i++) {
+                        d += "<tr><td>" + response.result[i].ProductName + "</td><td>"+ response.result[i].Categiry +"</td><td>"+response.result[i].MfgDate+"</td><td>"+response.result[i].Price+"</td><td>"+response.result[i].IsAvailable+"</td></tr>";
+                    }
+                    $(".table").append(d);
+                    
+
+                }
+
+            });
+
+
+        });
+
+    });
+    </script>

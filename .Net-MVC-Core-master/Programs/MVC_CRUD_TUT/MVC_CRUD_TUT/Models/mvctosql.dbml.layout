@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="mvctosql">
+  <DataContextMoniker Name="/mvctosqlDataContext" />
+  <nestedChildShapes>
+    <classShape Id="a2de0c59-a549-40ff-abca-6c44f67e69b7" absoluteBounds="2, 1.625, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/mvctosqlDataContext/ExamTB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5de7d5e5-47a2-40d7-9907-b83998265fcc" absoluteBounds="2.015, 2.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1bd350d5-8061-4e7a-9215-eee9dbe2f80b" absoluteBounds="6.75, 3.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/mvctosqlDataContext/Student" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8b1c8398-ec00-4a44-b182-8c7abc8104aa" absoluteBounds="6.765, 4.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.75 : 3.875); (7.75 : 2.41429768880208); (4 : 2.41429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/mvctosqlDataContext/Student/Student_ExamTB" />
+      <nodes>
+        <classShapeMoniker Id="1bd350d5-8061-4e7a-9215-eee9dbe2f80b" />
+        <classShapeMoniker Id="a2de0c59-a549-40ff-abca-6c44f67e69b7" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

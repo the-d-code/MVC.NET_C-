@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<html>
+<head>
+    <title>FORM</title>
+    
+</head>
+    <body ng-app="myapp" ng-controller="usercontroller" ng-init="getdata()">
+         <form method="post" ng-submit="adduser()">
+             <div style="margin-top:50px"  >
+                 <input type="text" ng-model="user.id" hidden/>
+                FirstName: <input type="text" ng-model="user.fname"><hr>
+                LastName: <input type="text" ng-model="user.lname"><hr>
+                Username: <input type="text" ng-model="user.uname"><hr>
+                Password: <input type="password" ng-model="user.pass"><hr>
+                 <button type="button" ng-click="Add()" value="Add User" >ADD DATA</button>
+                 <button type="button" ng-click="AddMarks()" > Add Marks</button>
+                 <hr>
+                 <div id="marks">
+                     <div ng-repeat="i in MarksList">
+                       Marks1:  <input type="text" ng-model="i.Marks1" ng-change="calculate($index,i)" />
+                        Marks2: <input type="text" ng-model="i.Marks2" ng-change="calculate($index,i)" />
+                        Marks3: <input type="text" ng-model="i.Marks3"  ng-change="calculate($index,i)"/>
+                         Total:<input type="text" ng-model="i.Total" />
+                         Per:<input type="text" ng-model="i.Percentage" />
+
+                     </div>
+                 </div>
+                 <hr />
+                 <center><h2> Users Detail</h2></center>
+                 <table align="center">
+                     <tr>
+                         <th>First Name</th>
+                         <th>Last Name</th>
+                         <th>Username</th>
+                         <th>Password</th>
+                         <th>Delete</th>
+                     </tr>
+                     <tr ng-repeat="master in MasterDetails">
+                         <td>
+                             {{master.Fname}}
+                         </td>
+                         <td>
+                             {{master.Lname}}
+                         </td>
+                         <td>
+                             {{master.Username}}
+                         </td>
+                         <td>
+                             {{master.Password}}
+                         </td>
+                         <td>
+                           <!--<a ng-href="deleterecord" ng-click="delete(master)">Delete</a>-->  
+                             <span ng-click="delete(master.Id)">Delete</span>
+                             <span ng-click="Filldata(master.Id)">Select</span>
+                         </td>
+                     </tr>
+                 </table>
+             </div>
+
+         </form>
+    </body>
+</html>
+
+
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script src="~/Scripts/Users.js"></script>

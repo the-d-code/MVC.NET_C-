@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Final">
+  <DataContextMoniker Name="/FinalDataContext" />
+  <nestedChildShapes>
+    <classShape Id="ed6487e7-ff49-4efe-aa98-bc812950baf5" absoluteBounds="1.375, 2, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/FinalDataContext/CategoryTB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="04f66ed6-3ede-4cec-95d8-cbb712f5c33e" absoluteBounds="1.3900000000000001, 2.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3514d4ee-2965-48a0-b150-6708cd3f9139" absoluteBounds="4.5, 2.75, 2, 1.9631982421875">
+      <DataClassMoniker Name="/FinalDataContext/ProductTB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="886b6d7b-a135-42a6-9833-b0bdecf68f43" absoluteBounds="4.515, 3.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.375 : 2.97199625651042); (4.5 : 2.97199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/FinalDataContext/CategoryTB/CategoryTB_ProductTB" />
+      <nodes>
+        <classShapeMoniker Id="ed6487e7-ff49-4efe-aa98-bc812950baf5" />
+        <classShapeMoniker Id="3514d4ee-2965-48a0-b150-6708cd3f9139" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

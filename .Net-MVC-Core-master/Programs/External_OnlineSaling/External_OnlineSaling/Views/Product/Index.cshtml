@@ -1,0 +1,141 @@
+﻿@model IEnumerable<External_OnlineSaling.Models.ProductTB>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<h1>Hello @TempData["adminname"]</h1>
+
+<form method="post">
+    <div class="form-group">
+        <label class = "control-label col-md-2">Product</label>
+        <div class="col-md-10">
+          <input type="text" name="product" class="form-control" id="product" />
+        </div>
+    </div>
+    <div>
+        <label>Date1</label>
+        <input type="date" name="date1" id="date1" />
+        <br>
+        <label>Date2</label>
+        <input type="date" name="date2" id="date2" />
+
+        <br>
+        <input type="submit" value="Seacrh" id="btnsearch" />
+        </div>
+
+    </form>
+<br />
+<br />
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create")<br>
+    @Html.ActionLink("See Order", "Orders")
+</p>
+<div id="main"></div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MfgDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+    
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryTB.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MfgDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+                </td>
+            </tr>
+        }
+    
+</table>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#product").on("keyup", function (e) {
+
+       
+            var product = $(this).val();
+            //alert(product)
+            var add = "";
+            $.ajax({
+                url: "@Url.Action("GetProducts","Product")",
+                type: "get",
+                data: { product: product },
+                success: function (response) {
+                    console.table(response.Result)
+                    $(".table").remove();
+                    var d = "<table class='table'><tr><th>" + "ProductName" + "</th><th>" + "CategoryName" + "</th><th>" + "MfgDate" + "</th><th>" + "Price" + "</th><th>" + "Description" + "  </th></tr><tr class='here'></tr></table>";
+                    $("#main").append(d);
+                    //d.find("tbody tr").remove();
+                    for (var i = 0; i < response.Result.length; i++) {
+                        add += "<tr><td>" + response.Result[i].ProductName + "</td><td>" + response.Result[i].CategoryName + "</td> <td>" + response.Result[i].MfgDate + "</td><td>" + response.Result[i].Price + "</td><td>" + response.Result[i].Description + "</td><tr>";
+                    }
+                    $(".table").append(add);
+                }
+            })
+        })
+
+
+        $("#btnsearch").click(function () {
+
+            var date1 = $("#date1").val();
+            var date2 = $("#date2").val();
+
+            var add = "";
+            $.ajax({
+                url: "@Url.Action("GetProductsDate","Product")",
+                type: "get",
+                data: { date1: date1 , date2:date2},
+                success: function (response) {
+                    debugger;
+                    console.table(response.Result);
+                    $(".table").remove();
+                    var d = "<table class='table'><tr><th>" + "ProductName" + "</th><th>" + "CategoryName" + "</th><th>" + "MfgDate" + "</th><th>" + "Price" + "</th><th>" + "Description" + "  </th></tr><tr class='here'></tr></table>";
+                    $("#main").append(d);
+                    //d.find("tbody tr").remove();
+                    for (var i = 0; i < response.Result.length; i++) {
+                        add += "<tr><td>" + response.Result[i].ProductName + "</td><td>" + response.Result[i].CategoryName + "</td> <td>" + response.Result[i].MfgDate + "</td><td>" + response.Result[i].Price + "</td><td>" + response.Result[i].Description + "</td><tr>";
+                    }
+                    $(".table").append(add);
+                }
+            })
+
+
+        })
+    });
+    </script>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="LinqWithWebService">
+  <DataContextMoniker Name="/LinqWithWebServiceDataContext" />
+  <nestedChildShapes>
+    <classShape Id="6e01e702-9361-4353-a18a-4b812d210d06" absoluteBounds="5, 2.75, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/LinqWithWebServiceDataContext/DeptTB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0136e9b3-4d83-4b40-98a6-3fa826da2eb0" absoluteBounds="5.015, 3.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b915ad1b-2e1f-4dbc-a73d-75157033902c" absoluteBounds="8.125, 1.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/LinqWithWebServiceDataContext/EmpTB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2690d146-a99f-412a-8562-bc9b0ac7829c" absoluteBounds="8.14, 2.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7 : 3.19794840494792); (8.125 : 3.19794840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LinqWithWebServiceDataContext/DeptTB/DeptTB_EmpTB" />
+      <nodes>
+        <classShapeMoniker Id="6e01e702-9361-4353-a18a-4b812d210d06" />
+        <classShapeMoniker Id="b915ad1b-2e1f-4dbc-a73d-75157033902c" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="f537bf6e-9023-402c-bea4-5d543e326ea2" absoluteBounds="2.5, 1.875, 2, 1.3862939453125">
+      <DataClassMoniker Name="/LinqWithWebServiceDataContext/UserTB" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b3d9935f-98ae-44f0-880c-f9fc7dbe4231" absoluteBounds="2.5149999999999997, 2.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

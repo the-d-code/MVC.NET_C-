@@ -1,0 +1,95 @@
+﻿@model IEnumerable<External_OnlineSaling.Models.OrderDetailTB>
+
+@{
+    ViewBag.Title = "Orders";
+}
+
+<h2>Orders</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<div id="new"></div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderId)
+        </th>
+        <th>
+            <label>User</label>
+        </th>
+        <th>
+            <label>Product</label>
+        </th>
+        <th>
+            <label>Price</label>
+        </th>
+        <th>
+            <label>Quantity</label>
+        </th>
+        <th>
+            <label>Total Amount</label>
+        </th>
+        <th>
+            <label>Date</label>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            <label>Country</label>
+        </th>
+        <th>
+            <label>State</label>
+        </th>
+        <th>
+            <label>City</label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderTB.UserTB.Username)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProductTB.ProductName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProductTB.Price)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Qty)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderTB.TotalAmount)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderTB.Date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Address)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CountryTB.CountryName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.StateTB.StateName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CityTB.CityName)
+    </td>
+    <td>
+        @*@Html.ActionLink("Edit", "Edit", new { id = item.OrderDetailId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.OrderDetailId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.OrderDetailId })*@
+    </td>
+</tr>
+}
+
+</table>
+<script></script>

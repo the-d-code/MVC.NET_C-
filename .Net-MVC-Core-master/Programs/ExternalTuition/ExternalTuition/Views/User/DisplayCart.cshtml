@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ExternalTuition.Models.CartTB>
+
+@{
+    ViewBag.Title = "DisplayCart";
+}
+
+<h2>DisplayCart</h2>
+@{decimal sum = 0;}
+<p>
+
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserTB.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductTB.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductTB.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>Total</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserTB.Username)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProductTB.ProductName)
+    </td>
+    <td>
+        <img src="~/UploadedFiles/@item.ProductTB.Image" height="100" width="100" style="border-radius:50%" />
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => item.Qty)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        @{ var total= item.Qty * item.Price ; }
+        @total
+    </td>
+    <td>
+        @Html.ActionLink("Delete", "DeleteCartItem", new { id = item.CartId })
+    </td>
+    @{
+        sum = sum + Convert.ToDecimal(item.Price);
+            }
+</tr>
+      
+}
+    <tr>
+        <td colspan="6">
+            @Html.ActionLink("BuyNow","GoBuy")
+            <span style="float:right;margin-right:90px;"> GrandTotal-@sum</span>
+        </td>
+        </tr>
+
+
+
+</table>

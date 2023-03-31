@@ -1,0 +1,31 @@
+﻿
+Package Manager Terminal
+
+PM> Install-Package Microsoft.EntityFrameworkCore -Version 2.1.11
+PM> Install-Package Microsoft.EntityFrameworkCore.Tools -Version 2.1.11
+
+
+PM> Scaffold-DbContext "Server=(localdb)\MSSQLLocalDB;Database=Studydb" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models 
+
+Create a Controller
+We are going to do this using scaffolding process.
+Right-click on the Controllers →Add →Controller.
+Select Full Dependencies.
+You can ignore the instructions in the ScaffoldingReadMe.txt file that opens
+Now that scaffolding is enabled, we can scaffold a controller for the Blog entity.
+Right-click on the Controllers folder in Solution Explorer and select Add -> Controller…
+Select API Controller with actions, using Entity Framework and click Ok
+
+
+
+
+Startup.cs
+ public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            var connection = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=testdb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            services.AddDbContext<StudydbContext>(options => options.UseSqlServer(connection));
+
+
+
+        }	

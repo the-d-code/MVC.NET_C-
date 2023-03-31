@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="customers" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\MSSQLSERVER2;Initial Catalog=customers;Integrated Security=True;Pooling=False" SettingsObjectName="sep_2012.Properties.Settings" SettingsPropertyName="customersConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.customers" Member="customers">
+    <Type Name="customer">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="phoneno" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="state" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="city" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="gender" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="[open balance]" Member="open_balance" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[an income]" Member="an_income" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[own car]" Member="own_car" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.dept" Member="depts">
+    <Type Name="dept">
+      <Column Name="dno" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="dname" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="dept_emp" Member="emps" ThisKey="dno" OtherKey="dno" Type="emp" />
+    </Type>
+  </Table>
+  <Table Name="dbo.emp" Member="emps">
+    <Type Name="emp">
+      <Column Name="eno" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ename" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="dept_emp" Member="dept" ThisKey="dno" OtherKey="dno" Type="dept" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

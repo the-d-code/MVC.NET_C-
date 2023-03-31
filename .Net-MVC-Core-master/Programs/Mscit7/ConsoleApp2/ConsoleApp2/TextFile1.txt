@@ -1,0 +1,2 @@
+Create a tuple which create a threee cross three metrics
+Create a tuple which store info of Employee which empno ,empname,Sala do for 5 employeee(Collection of tupple)

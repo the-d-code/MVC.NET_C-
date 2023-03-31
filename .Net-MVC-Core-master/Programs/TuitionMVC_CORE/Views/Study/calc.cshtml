@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewData["Title"] = "calc";
+}
+
+<h1>calc</h1>
+
+<div>
+    <form method="post">
+        Length:<input type="text" name="length"><br />
+        Breath:<input type="text" name="breath"><br />
+        Height:<input type="text" name="height"><br />
+        Volume:<input type="text" name="volume" value="@ViewBag.volume" readonly />
+        Area :<input type="text" name="area" value="@ViewBag.area" readonly /><br/>
+        <input type ="submit" name="submit" value="Calculate">
+    </form>
+    </div>

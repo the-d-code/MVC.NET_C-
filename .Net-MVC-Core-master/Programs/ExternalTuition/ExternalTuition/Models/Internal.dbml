@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="InternalPractical" Class="InternalDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-LULPB7Q\SQLEXPRESS;Initial Catalog=InternalPractical;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="InternalPracticalConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.UserTB" Member="UserTBs">
+    <Type Name="UserTB">
+      <Column Name="UserId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Username" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="UserType" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="ContactNo" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="UserTB_OrderTB" Member="OrderTBs" ThisKey="UserId" OtherKey="UserId" Type="OrderTB" />
+      <Association Name="UserTB_CartTB" Member="CartTBs" ThisKey="UserId" OtherKey="UserId" Type="CartTB" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProductTB" Member="ProductTBs">
+    <Type Name="ProductTB">
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Image" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="ProductTB_OrderDetailTB" Member="OrderDetailTBs" ThisKey="ProductId" OtherKey="ProductId" Type="OrderDetailTB" />
+      <Association Name="ProductTB_CartTB" Member="CartTBs" ThisKey="ProductId" OtherKey="ProductId" Type="CartTB" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderTB" Member="OrderTBs">
+    <Type Name="OrderTB">
+      <Column Name="OrderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="GrandTotal" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="OrderTB_OrderDetailTB" Member="OrderDetailTBs" ThisKey="OrderId" OtherKey="OrderId" Type="OrderDetailTB" />
+      <Association Name="UserTB_OrderTB" Member="UserTB" ThisKey="UserId" OtherKey="UserId" Type="UserTB" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderDetailTB" Member="OrderDetailTBs">
+    <Type Name="OrderDetailTB">
+      <Column Name="OrderDetailId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="OrderId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="OrderTB_OrderDetailTB" Member="OrderTB" ThisKey="OrderId" OtherKey="OrderId" Type="OrderTB" IsForeignKey="true" />
+      <Association Name="ProductTB_OrderDetailTB" Member="ProductTB" ThisKey="ProductId" OtherKey="ProductId" Type="ProductTB" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CartTB" Member="CartTBs">
+    <Type Name="CartTB">
+      <Column Name="CartId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProductId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Qty" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Association Name="ProductTB_CartTB" Member="ProductTB" ThisKey="ProductId" OtherKey="ProductId" Type="ProductTB" IsForeignKey="true" />
+      <Association Name="UserTB_CartTB" Member="UserTB" ThisKey="UserId" OtherKey="UserId" Type="UserTB" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

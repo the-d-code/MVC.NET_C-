@@ -1,0 +1,196 @@
+﻿@model External_OnlineSaling.Models.OrderClass
+
+@{
+    ViewBag.Title = "Order";
+}
+
+<h2>Order</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>OrderClass</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Username", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               <input type="text" value="@ViewBag.User" name="Username" readonly>
+                <input type="text" value="@ViewBag.Uid" name="UserId" hidden/>
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Product", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.TextBox("Product", (String)ViewBag.ProductName,new{ @class="form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.ProductId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" id="pid" value="@ViewBag.pid" name="pid" hidden />
+                @Html.ValidationMessageFor(model => model.ProductId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Qty, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Qty, new { htmlAttributes = new { @class = "form-control", @id = "qty" } })
+                @Html.ValidationMessageFor(model => model.Qty, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TotalAmount, new { htmlAttributes = new { @class = "form-control", @id = "tamt", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TotalAmount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Country</label>
+            <div class="col-md-10">
+                @Html.DropDownList("CountryId",ViewBag.CountryList as SelectList, new { @class = "form-control", @id = "CountryId" })
+                @Html.ValidationMessageFor(model => model.CountryId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">State</label>
+
+            <div class="col-md-10">
+                <select id="Sid" name="Sid" class="form-control">
+                    <option value="0">Select</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.StateId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">City</label>
+
+            <div class="col-md-10">
+                <select id="Cid" name="Cid" class="form-control">
+                    <option value="">Select</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.CityId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+         var id = $("#pid").val();
+        alert(id);
+        $("#qty").change(function () {
+            //alert("Hello");
+          
+            var qty = $(this).val();
+            alert(qty);
+            
+            $.ajax({
+
+                url: "@Url.Action("GetTotal","UserHome")",
+                type: "POST",
+                data: { id: id, qty: qty },
+                success: function (response) {
+                    if (response.Status == "Success") {
+                        alert(response.Total);
+                        $("#tamt").val(response.Total);
+                       // $('input[name="TotalAmount"]').val(Total)
+                    }
+                }
+
+
+            })
+        });
+        
+
+         $("#CountryId").change(function () {
+            var cid = $(this).val();
+             var option = "";
+               // debugger;
+             $.ajax({
+                 url: "@Url.Action("GetState","UserHome")",
+                 type: "GET",
+                 data: { cid: cid },
+                 success: function (response) {
+                    
+                         console.table(response.Result);
+                      $("#Sid").empty();
+                     // alert(response.Total)
+                     for (var i = 0; i < response.Result.length; i++){
+                         option += '<option value="' + response.Result[i].StateId + '">' + response.Result[i].StateName + '</option>';
+                         }
+                         $('#Sid').append(option);
+                    
+                 }
+
+
+             });
+
+
+         })
+
+        $("#Sid").change(function () {
+            var Sid = $(this).val();
+            alert(Sid);
+            var option = "";
+            $.ajax({
+                url: "@Url.Action("GetCity","UserHome")",
+                type: "get",
+                data: { Sid: Sid },
+                success: function (response) {
+                    console.table(response.Result);
+                    $("#Cid").empty();
+                    
+                    for (var i = 0; i < response.Result.length; i++) {
+                        option += '<option value="' + response.Result[i].CityId + '">' + response.Result[i].CityName + '</option>';
+                    }
+                    $("#Cid").append(option);
+                }
+            })
+        });
+
+    })
+
+
+</script>

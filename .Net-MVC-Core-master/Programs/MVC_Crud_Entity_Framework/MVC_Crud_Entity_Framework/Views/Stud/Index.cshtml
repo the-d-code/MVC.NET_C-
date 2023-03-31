@@ -1,0 +1,46 @@
+﻿@model IEnumerable<MVC_Crud_Entity_Framework.Models.Student>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            sname
+        </th>
+        <th>
+            sem
+        </th>
+        <th>
+            course
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.rollno }) |
+         
+            @Html.ActionLink("Delete", "Delete", new { id = item.rollno }, new { onclick = "return confirm('Sure To Delete')" })
+        </td>
+        <td>
+            @item.sname
+        </td>
+        <td>
+            @String.Format("{0:F}", item.sem)
+        </td>
+        <td>
+            @item.course
+        </td>
+    </tr>
+}
+
+</table>
+

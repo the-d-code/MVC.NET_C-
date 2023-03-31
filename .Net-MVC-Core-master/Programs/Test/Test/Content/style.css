@@ -1,0 +1,17 @@
+/* Styles go here */
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
+
+.wizard > .steps{
+  display: inline-block;
+}
+
+.inline-block{
+  display: inline-bloak;
+}
+
+.margin-bottom-10{
+  margin-bottom: 10px;
+}

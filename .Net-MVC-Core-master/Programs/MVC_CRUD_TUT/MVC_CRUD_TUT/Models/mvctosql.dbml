@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="StudyDB" Class="mvctosqlDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\StudyDB.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="StudyDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.ExamTB" Member="ExamTBs">
+    <Type Name="ExamTB">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Rno" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Sem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Per" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="Student_ExamTB" Member="Student" ThisKey="Rno" OtherKey="Rno" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Student" Member="Students">
+    <Type Name="Student">
+      <Column Name="Rno" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Sem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Fees" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Student_ExamTB" Member="ExamTBs" ThisKey="Rno" OtherKey="Rno" Type="ExamTB" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MvcApplication2.ServiceReference1.stud>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            course
+        </th>
+        <th>
+            rno
+        </th>
+        <th>
+            sname
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.rno  }) |
+            @Html.ActionLink("Delete", "Delete", new {  id=item.rno  })
+        </td>
+        <td>
+            @item.course
+        </td>
+        <td>
+            @String.Format("{0:F}", item.rno)
+        </td>
+        <td>
+            @item.sname
+        </td>
+    </tr>
+}
+
+</table>
+

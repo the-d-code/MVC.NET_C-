@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="employeedb" Class="employeeDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=employeedb;Integrated Security=True" SettingsObjectName="external_2015_paper.Properties.Settings" SettingsPropertyName="employeedbConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.employeeTb" Member="employeeTbs">
+    <Type Name="employeeTb">
+      <Column Name="empId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="empName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="empSalary" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="empDepartment" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,90 @@
+﻿@model IEnumerable<CoreTest.models.ProductTb>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<label>Name</label>
+<input type="text" name="name" id="name" />
+
+<div id="new"></div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MfgDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAvailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MfgDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAvailable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Categiry)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#name").on("keyup", function (e) {
+            alert($(this).val())
+            var name = $(this).val();
+            var add = "";
+            $.ajax({
+                url: "/Product/GetProduct?name=" + name,
+                type: "get",
+                success: function (response) {
+                    console.table(response.result);
+                    $(".table").remove();
+
+                    var d = "<table class='table'><tr><th>Prduct Name</th><th>Category</th><th>Price</th><th>Mgf Date</th></tr></table>";
+                    $("#new").append(d);
+
+                    for (var i = 0; i < response.result.length; i++) {
+                        add += "<tr><td>" + response.result[i].productName + "</td><td>" + response.result[i].categiry + "</td><td>" + response.result[i].price + "</td><td>" + response.result[i].mfgDate + "</td>";
+                    }
+                    $(".table").append(add);
+
+                }
+            });
+        });
+    })
+</script>

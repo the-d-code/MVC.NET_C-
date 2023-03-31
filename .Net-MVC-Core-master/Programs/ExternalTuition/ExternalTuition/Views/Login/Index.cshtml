@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div class="container">
+     <div class="content">
+         <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <label style="color:red;">@ViewBag.err</label>
+                <br><br>
+                <label for="name">Username:</label>
+                <input type="text" id="name" class="form-control" placeholder="Username Here" name="uname">
+                <br/><br />
+                <label for="pass">Password</label>
+                <input type="password" name="pass" id="pass" class="form-control" placeholder="Password Here" />
+
+                <br>
+                <br>
+                <input type="submit" value="submit" name="submit" class="form-control btn-primary" />
+
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+             </form>
+    </div>
+</div>

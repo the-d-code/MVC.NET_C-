@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="apiDemo" Class="FinalDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-LULPB7Q\SQLEXPRESS;Initial Catalog=apiDemo;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="apiDemoConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.CategoryTB" Member="CategoryTBs">
+    <Type Name="CategoryTB">
+      <Column Name="CategoryId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Categiry" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="CategoryTB_ProductTB" Member="ProductTBs" ThisKey="CategoryId" OtherKey="CategoryId" Type="ProductTB" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ProductTB" Member="ProductTBs">
+    <Type Name="ProductTB">
+      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CategoryId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MfgDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="IsAvailable" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="CategoryTB_ProductTB" Member="CategoryTB" ThisKey="CategoryId" OtherKey="CategoryId" Type="CategoryTB" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

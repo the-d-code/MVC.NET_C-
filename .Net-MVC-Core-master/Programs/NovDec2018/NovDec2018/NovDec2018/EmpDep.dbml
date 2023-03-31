@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="EmployeeDB" Class="EmpDepDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=EmployeeDB;Integrated Security=True" SettingsObjectName="NovDec2018.Properties.Settings" SettingsPropertyName="EmployeeDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.EmployeeTB" Member="EmployeeTBs">
+    <Type Name="EmployeeTB">
+      <Column Name="EmployeeId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EmployeeName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Salary" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DepartmentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="DepartmentTB_EmployeeTB" Member="DepartmentTB" ThisKey="DepartmentId" OtherKey="DepartmentId" Type="DepartmentTB" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DepartmentTB" Member="DepartmentTBs">
+    <Type Name="DepartmentTB">
+      <Column Name="DepartmentId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DepartmentName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="DepartmentTB_EmployeeTB" Member="EmployeeTBs" ThisKey="DepartmentId" OtherKey="DepartmentId" Type="EmployeeTB" />
+    </Type>
+  </Table>
+</Database>
